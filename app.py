@@ -23,25 +23,29 @@ def main():
             adicionar_livro(id,titulo, autor, paginas, ano)
         elif escolha == "2":
             listar_livros()
-        # elif escolha == "3":
-        #     id_livro = input("ID do Livro: ")
-        #     novos_dados = {}
-        #     titulo = input("Novo Título (deixe em branco para não alterar): ")
-        #     if titulo:
-        #         novos_dados["titulo"] = titulo
-        #     autor = input("Novo Autor (deixe em branco para não alterar): ")
-        #     if autor:
-        #         novos_dados["autor"] = autor
-        #     paginas = input("Novas Páginas (deixe em branco para não alterar): ")
-        #     if paginas:
-        #         novos_dados["paginas"] = int(paginas)
-        #     ano = input("Novo Ano (deixe em branco para não alterar): ")
-        #     if ano:
-        #         novos_dados["ano"] = int(ano)
-        #     atualizar_livro(id_livro, novos_dados)
+        elif escolha == "3":
+            titulo = input("Título do Livro: ")
+            novos_dados = {}
+            novo_titulo = input("Novo Título (deixe em branco para não alterar): ")
+            if novo_titulo:
+                novos_dados["titulo"] = novo_titulo
+            autor = input("Novo Autor (deixe em branco para não alterar): ")
+            if autor:
+                novos_dados["autor"] = autor
+            paginas = input("Novas Páginas (deixe em branco para não alterar): ")
+            if paginas:
+                novos_dados["paginas"] = int(paginas)
+            ano = input("Novo Ano (deixe em branco para não alterar): ")
+            if ano:
+                novos_dados["ano"] = int(ano)
+            atualizar_livro(titulo, novos_dados)
         # elif escolha == "4":
         #     id_livro = input("ID do Livro: ")
         #     deletar_livro(id_livro)
+        elif escolha == "4":
+         titulo = input("Título do Livro a ser removido: ")
+         deletar_livro(titulo)
+
         elif escolha == "5":
             email = input("Email: ")
             senha = input("Senha: ")
