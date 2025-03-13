@@ -44,14 +44,8 @@ Instale:
 pip install PyQt5 firebase-admin
 ```
 
-### 🔹 3. Configuração do Firebase
 
-1. Crie um projeto no [Firebase](https://firebase.google.com/)
-2. Ative **Firestore** ou **Realtime Database**
-3. Ative **Authentication (Email/Senha)**
-4. Baixe o arquivo `firebase-config.json` e coloque na raiz do projeto
-
-### 🔹 4. Execute o Projeto
+### 🔹 3. Execute o Projeto
 ```bash
 python app.py
 ```
