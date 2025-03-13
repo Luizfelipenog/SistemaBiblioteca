@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class tela_adicionar(object):
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(775, 653)
@@ -125,6 +125,9 @@ class tela_adicionar(object):
 "")
         self.traducao_4.setText("")
         self.traducao_4.setObjectName("traducao_4")
+        self.pushButton = QtWidgets.QPushButton(Form)
+        self.pushButton.setGeometry(QtCore.QRect(290, 390, 111, 27))
+        self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -137,3 +140,14 @@ class tela_adicionar(object):
         self.label_3.setText(_translate("Form", "Paginas:"))
         self.label_4.setText(_translate("Form", "Ano:"))
         self.confirm_4.setText(_translate("Form", "Voltar"))
+        self.pushButton.setText(_translate("Form", "Adicionar livro"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
