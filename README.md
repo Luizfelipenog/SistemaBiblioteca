@@ -79,7 +79,6 @@ python app.py
 │-- 📁 BD  # Configuração do banco de dados Firebase
 │   │-- 📄 firebase_config.py  # Configuração Firebase
 │   │-- 📄 projeto-sd-856ba-firebase-adminsdk-fbsvc-ce5f94f2df.json  # Chave de autenticação Firebase
-│-- 📄 requirements.txt  # Dependências do projeto
 │-- 📄 README.md  # Documentação do projeto
 ```
 
