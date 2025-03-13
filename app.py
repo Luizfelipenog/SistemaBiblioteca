@@ -238,7 +238,7 @@ class Main(QMainWindow):
                             f"📄 Páginas: {paginas}\n"
                             f"━━━━━━━━━━━━━━━━━━")
 
-                item = QtWidgets.QListWidgetItem(detalhes)  # Cria o item na lista
+                item = QtWidgets.QListWidgetItem(detalhes)  # Cria o item na lista.
                 item.setData(QtCore.Qt.UserRole, dados)  # Associa os dados ao item
 
                 self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
