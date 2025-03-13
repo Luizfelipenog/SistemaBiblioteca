@@ -87,7 +87,8 @@ class Ui_Main:
             'tela_listar': QtWidgets.QWidget(),
             'tela_livros': QtWidgets.QWidget(),
         }        
-    
+
+        # Telas do sistema
         self.tela_inicial = tela_inicial()
         self.tela_inicial.setupUi(self.telas['tela_inicial'])
         
@@ -119,22 +120,24 @@ class Main(QMainWindow):
         self.ui = Ui_Main()
         self.ui.setupUi(self)
 
-    #Aqui vai ficar os botões e a chamada das funções.
-    
+        #Aqui vai ficar os botões e a chamada das funções.
+        
         #TELA INICIAL
         self.ui.tela_inicial.confirm.clicked.connect(self.abrirTela('cadastro'))
         self.ui.tela_inicial.confirm_2.clicked.connect(self.abrirTela('autentificação'))
         
         #TELA LOGIN
-        self.ui.autentificação.confirm_4.clicked.connect(self.retornar)
+        self.ui.autentificação.confirm_4.clicked.connect(self.tela_inicial)
+        self.ui.autentificação.confirm_5.clicked.connect(self.autenticar_usuario)
         #TELA CADASTRO
-        self.ui.cadastro.confirm_4.clicked.connect(self.retornar)
-        
-    def retornar(self):
+        self.ui.cadastro.confirm_4.clicked.connect(self.tela_inicial)
+        self.ui.cadastro.confirm_5.clicked.connect(self.cadastrar_usuario)
+    
+    # Funções
+    def tela_inicial(self):
         if self.atual == "cadastro" or self.atual == "autentificação":
             self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
             self.atual = "tela_inicial"
-
 
 
     def abrirTela(self, nome_tela):
@@ -142,6 +145,47 @@ class Main(QMainWindow):
             self.atual = nome_tela
             self.ui.QtStack.setCurrentWidget(self.ui.telas[nome_tela])
         return mudar_tela
+    
+    # Tela de cadastro
+    def cadastrar_usuario(self):
+        email = self.ui.cadastro.palavra.text()
+        senha = self.ui.cadastro.traducao.text()
+
+        if not email or not senha:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Digite valores válidos.')
+        elif len(senha) < 6: 
+            QtWidgets.QMessageBox.information(self, 'Erro', 'A senha deve ter pelo menos 6 caracteres.')
+        else:
+            verif = criar_usuario(email, senha)
+            if verif == None:
+                QtWidgets.QMessageBox.information(self, 'Erro', 'Email inválido.')
+            else:
+                QtWidgets.QMessageBox.information(self, 'Sucesso', 'Usuário cadastrado com sucesso!')
+                self.tela_inicial()
+
+        
+    def autenticar_usuario(self):
+        try:
+            email = self.ui.autentificação.traducao_2.text()
+            senha = self.ui.autentificação.traducao_3.text()
+            
+            print(email, senha)
+            
+            if email == '' or senha == '':
+                QtWidgets.QMessageBox.information(self, 'Erro', 'Digite valores válidos.')
+            else:
+                verif = autenticar_usuario(email, senha)
+                if verif == None:
+                    QtWidgets.QMessageBox.information(self, 'Erro', 'Email ou senha inválidos.')
+                else:
+                    QtWidgets.QMessageBox.information(self, 'Sucesso', 'Usuário autenticado com sucesso!')
+                    self.tela_inicial()
+
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Erro', f'Ocorreu um erro: {e}')
+
+            
+            
     
 
 if __name__ == '__main__':
