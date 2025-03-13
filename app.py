@@ -1,64 +1,6 @@
 from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
 from Servicos.auth_service import criar_usuario, autenticar_usuario
 
-# def main():
-#     while True:
-#         print("\nMenu:")
-#         print("1. Adicionar Livro")
-#         print("2. Listar Livros")
-#         print("3. Atualizar Livro")
-#         print("4. Deletar Livro")
-#         print("5. Criar Usuario")
-#         print("6. Autenticar Usuaio")
-#         print("0. Sair")
-        
-#         escolha = input("Escolha uma opcao: ")
-        
-#         if escolha == "1":
-#             titulo = input("Título: ")
-#             autor = input("Autor: ")
-#             paginas = int(input("Páginas: "))
-#             ano = int(input("Ano: "))
-#             adicionar_livro(titulo, autor, paginas, ano)
-#         elif escolha == "2":
-#             listar_livros()
-#         elif escolha == "3":
-#             titulo = input("Título do Livro: ")
-#             novos_dados = {}
-#             novo_titulo = input("Novo Título (deixe em branco para não alterar): ")
-#             if novo_titulo:
-#                 novos_dados["titulo"] = novo_titulo
-#             autor = input("Novo Autor (deixe em branco para não alterar): ")
-#             if autor:
-#                 novos_dados["autor"] = autor
-#             paginas = input("Novas Páginas (deixe em branco para não alterar): ")
-#             if paginas:
-#                 novos_dados["paginas"] = int(paginas)
-#             ano = input("Novo Ano (deixe em branco para não alterar): ")
-#             if ano:
-#                 novos_dados["ano"] = int(ano)
-#             atualizar_livro(titulo, novos_dados)
-
-#         elif escolha == "4":
-#          titulo = input("Título do Livro a ser removido: ")
-#          deletar_livro(titulo)
-
-#         elif escolha == "5":
-#             email = input("Email: ")
-#             senha = input("Senha: ")
-#             criar_usuario(email, senha)
-#         elif escolha == "6":
-#             email = input("Email: ")
-#             senha = input("Senha: ")
-#             autenticar_usuario(email, senha)
-#         elif escolha == "0":
-#             break
-#         else:
-#             print("Opção inválida. Tente novamente.")
-
-# if __name__ == "__main__":
-#     main()
-
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication
@@ -120,11 +62,13 @@ class Main(QMainWindow):
         self.ui = Ui_Main()
         self.ui.setupUi(self)
 
+        self.atual = "tela_inicial" 
+
         #Aqui vai ficar os botões e a chamada das funções.
         
         #TELA INICIAL
-        self.ui.tela_inicial.confirm.clicked.connect(self.abrirTela('cadastro'))
-        self.ui.tela_inicial.confirm_2.clicked.connect(self.abrirTela('autentificação'))
+        self.ui.tela_inicial.confirm.clicked.connect(lambda:self.abrirTela('cadastro')())
+        self.ui.tela_inicial.confirm_2.clicked.connect(lambda:self.abrirTela('autentificação')())
         
         #TELA LOGIN
         self.ui.autentificação.confirm_4.clicked.connect(self.tela_inicial)
@@ -140,43 +84,42 @@ class Main(QMainWindow):
         
         #TELA LIVROS
         self.ui.tela_livros.confirm_4.clicked.connect(self.tela_inicial)
-        self.ui.tela_livros.confirm.clicked.connect(self.abrirTela('tela_adicionar'))
-        self.ui.tela_livros.confirm_2.clicked.connect(self.abrirTela('editar_livros'))
-        self.ui.tela_livros.confirm_3.clicked.connect(self.abrirTela('tela_listar'))
+        self.ui.tela_livros.confirm.clicked.connect(lambda:self.abrirTela('tela_adicionar')())
+        self.ui.tela_livros.confirm_2.clicked.connect(lambda:self.abrirTela('editar_livros')())
+        self.ui.tela_livros.confirm_3.clicked.connect(lambda:self.abrirTela('tela_listar')())
         
         #TELA ADICIONAR
-        self.ui.tela_adicionar.confirm_4.clicked.connect(self.abrirTela("tela_livros")) 
+        self.ui.tela_adicionar.confirm_4.clicked.connect(lambda: self.abrirTela("tela_livros")()) 
         self.ui.tela_adicionar.palavra.returnPressed.connect(lambda: self.ui.tela_adicionar.palavra_2.setFocus())       
         self.ui.tela_adicionar.palavra_2.returnPressed.connect(lambda: self.ui.tela_adicionar.traducao_3.setFocus())
         self.ui.tela_adicionar.traducao_3.returnPressed.connect(lambda: self.ui.tela_adicionar.traducao_4.setFocus())
-        # self.ui.tela_adicionar.traducao_4.returnPressed.connect()
+        self.ui.tela_adicionar.traducao_4.returnPressed.connect(self.add)
         
         #TELA EDITAR
-        self.ui.editar_livros.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
+        self.ui.editar_livros.confirm_4.clicked.connect(lambda:self.abrirTela("tela_livros")())
         
         #TELA LISTAR
-        self.ui.tela_listar.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
+        self.ui.tela_listar.confirm_4.clicked.connect(lambda:self.abrirTela("tela_livros")())
         
     # Funções
     
     def tela_inicial(self):
         if self.atual == "cadastro" or self.atual == "autentificação" or self.atual == "tela_livros":
-            self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
             self.atual = "tela_inicial"
+
+            self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
 
 
     def abrirTela(self, nome_tela):
-        self.atual = nome_tela
-        # Verifica se a tela a ser aberta é 'tela_adicionar' e limpa os campos
         if nome_tela == "tela_adicionar":
             self.ui.tela_adicionar.palavra.setText("")
             self.ui.tela_adicionar.palavra_2.setText("")
             self.ui.tela_adicionar.traducao_3.setText("")
             self.ui.tela_adicionar.traducao_4.setText("")
 
-        # Função interna para mudar a tela
         def mudar_tela():
             self.ui.QtStack.setCurrentWidget(self.ui.telas[nome_tela])
+            self.atual = nome_tela
 
         return mudar_tela
     
@@ -197,14 +140,13 @@ class Main(QMainWindow):
                 self.ui.cadastro.traducao_2.setText("")
                 self.tela_inicial()
 
+    #TELA DE LOGIN
         
     def autenticar_usuario(self):
         try:
             email = self.ui.autentificação.traducao_2.text()
             senha = self.ui.autentificação.traducao_3.text()
-            
-            print(email, senha)
-            
+                        
             if email == '' or senha == '':
                 QtWidgets.QMessageBox.information(self, 'Erro', 'Digite valores válidos.')
             else:
@@ -220,9 +162,20 @@ class Main(QMainWindow):
 
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Erro', f'Ocorreu um erro: {e}')
-
             
-            
+    #TELA DE ADICIONAR
+    def add(self):
+        titulo = self.ui.tela_adicionar.palavra.text()
+        autor = self.ui.tela_adicionar.palavra_2.text()
+        paginas = self.ui.tela_adicionar.traducao_3.text()
+        ano = self.ui.tela_adicionar.traducao_4.text()
+        adicionar_livro(titulo,autor,paginas,ano)
+        self.ui.tela_adicionar.palavra.setText("")
+        self.ui.tela_adicionar.palavra_2.setText("")
+        self.ui.tela_adicionar.traducao_3.setText("")
+        self.ui.tela_adicionar.traducao_4.setText("")
+    
+# def adicionar_livro(titulo, autor, paginas, ano
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
