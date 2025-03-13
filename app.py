@@ -134,10 +134,12 @@ class Main(QMainWindow):
         self.ui.cadastro.confirm_5.clicked.connect(self.cadastrar_usuario)
     
     # Funções
+    
     def tela_inicial(self):
         if self.atual == "cadastro" or self.atual == "autentificação":
             self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
             self.atual = "tela_inicial"
+
 
 
     def abrirTela(self, nome_tela):
@@ -145,6 +147,7 @@ class Main(QMainWindow):
             self.atual = nome_tela
             self.ui.QtStack.setCurrentWidget(self.ui.telas[nome_tela])
         return mudar_tela
+    
     
     # Tela de cadastro
     def cadastrar_usuario(self):
@@ -186,7 +189,6 @@ class Main(QMainWindow):
 
             
             
-    
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

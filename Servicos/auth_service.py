@@ -6,7 +6,6 @@ def criar_usuario(email, senha):
         user = auth.create_user(email=email, password=senha)
         print(f"Usuário criado com sucesso: {user.uid}")
         if user:
-            print("Usuário autenticado com sucesso!")
             return user
         else:
             print("Email ou senha inválidos!")
