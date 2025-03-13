@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>747</width>
+    <height>597</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>-10</y>
+     <width>291</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Bem Vindo.</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="confirm">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>180</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Extra Bold</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color:White;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+QPushButton:hover {
+    background-color: Gray;
+    color: white;
+    border: 2px solid white;
+}
+
+QPushButton:pressed {
+    background-color:Gray;
+    border: 2px solid yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cadastro</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="confirm_2">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>180</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Extra Bold</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color:White;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+QPushButton:hover {
+    background-color: Gray;
+    color: white;
+    border: 2px solid white;
+}
+
+QPushButton:pressed {
+    background-color:Gray;
+    border: 2px solid yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
