@@ -15,12 +15,11 @@ def main():
         escolha = input("Escolha uma opcao: ")
         
         if escolha == "1":
-            id = input("ID do Livro: ")
             titulo = input("Título: ")
             autor = input("Autor: ")
             paginas = int(input("Páginas: "))
             ano = int(input("Ano: "))
-            adicionar_livro(id,titulo, autor, paginas, ano)
+            adicionar_livro(titulo, autor, paginas, ano)
         elif escolha == "2":
             listar_livros()
         elif escolha == "3":
@@ -39,9 +38,7 @@ def main():
             if ano:
                 novos_dados["ano"] = int(ano)
             atualizar_livro(titulo, novos_dados)
-        # elif escolha == "4":
-        #     id_livro = input("ID do Livro: ")
-        #     deletar_livro(id_livro)
+
         elif escolha == "4":
          titulo = input("Título do Livro a ser removido: ")
          deletar_livro(titulo)
