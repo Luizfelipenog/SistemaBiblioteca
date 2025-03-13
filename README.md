@@ -63,18 +63,22 @@ python app.py
 ```
 📁 Projeto_SD
 │-- 📄 app.py  # Arquivo principal da aplicação
-│-- 📄 firebase_config.py  # Configuração do Firebase
-│-- 📁 Servicos  # Serviços da aplicação
-│   │-- 📄 crud_service.py  # CRUD de livros
+│-- 📄 app_telas.py  # Arquivo para gerenciamento das telas
+│-- 📄 Autentificação.py  # Tela de autenticação
+│-- 📁 Servicos  # Serviços do sistema
 │   │-- 📄 auth_service.py  # Serviço de autenticação
+│   │-- 📄 crud_service.py  # Serviço de CRUD
 │-- 📁 telas_SD  # Interface gráfica
-│   │-- 📄 Autentificacao.py  # Tela de login
-│   │-- 📄 cadastro.py  # Tela de cadastro de usuário
-│   │-- 📄 editar_livros.py  # Tela de edição de livros
 │   │-- 📄 tela_adicionar.py  # Tela de adição de livros
-│   │-- 📄 tela_inicial.py  # Tela inicial
 │   │-- 📄 tela_listar.py  # Tela de listagem de livros
+│   │-- 📄 tela_inicial.py  # Tela inicial
 │   │-- 📄 tela_livros.py  # Tela de gerenciamento de livros
+│   │-- 📄 editar_livros.py  # Tela de edição de livros
+│   │-- 📄 cadastro.py  # Tela de cadastro
+│   │-- 📄 Autentificação.py  # Tela de autenticação
+│-- 📁 BD  # Configuração do banco de dados Firebase
+│   │-- 📄 firebase_config.py  # Configuração Firebase
+│   │-- 📄 projeto-sd-856ba-firebase-adminsdk-fbsvc-ce5f94f2df.json  # Chave de autenticação Firebase
 │-- 📄 requirements.txt  # Dependências do projeto
 │-- 📄 README.md  # Documentação do projeto
 ```
@@ -82,24 +86,9 @@ python app.py
 ---
 
 ## 📸 Capturas de Tela
-(Adicione aqui prints da interface gráfica)
+
 
 ---
 
-## 📝 Contribuição
-Se quiser contribuir com melhorias, siga os passos:
 
-1. **Fork** o repositório
-2. Crie uma branch para suas alterações: `git checkout -b minha-feature`
-3. Commit suas alterações: `git commit -m 'Minha nova feature'`
-4. Push para o repositório: `git push origin minha-feature`
-5. Abra um **Pull Request**
 
----
-
-## 📄 Licença
-Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-Se precisar de ajustes ou algo mais, me avise! 🚀
