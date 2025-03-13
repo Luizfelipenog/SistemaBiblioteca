@@ -164,6 +164,7 @@ class Main(QMainWindow):
             self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
             self.atual = "tela_inicial"
 
+
     def abrirTela(self, nome_tela):
         self.atual = nome_tela
         # Verifica se a tela a ser aberta é 'tela_adicionar' e limpa os campos
@@ -178,6 +179,7 @@ class Main(QMainWindow):
             self.ui.QtStack.setCurrentWidget(self.ui.telas[nome_tela])
 
         return mudar_tela
+    
     
     # Tela de cadastro
     def cadastrar_usuario(self):
@@ -221,7 +223,6 @@ class Main(QMainWindow):
 
             
             
-    
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
