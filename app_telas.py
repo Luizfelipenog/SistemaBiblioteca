@@ -1,58 +1,91 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMainWindow
-
 import sys
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QApplication
+from telas_SD.Autentificação import autentificação  
+from telas_SD.cadastro import cadastro  
+from telas_SD.editar_livros import editar_livros  
+from telas_SD.tela_adicionar import tela_adicionar  
+from telas_SD.tela_inicial import tela_inicial  
+from telas_SD.tela_listar import tela_listar  
+from telas_SD.tela_livros import tela_livros  
 
-from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
-from Servicos.auth_service import criar_usuario, autenticar_usuario
 
-
-from telas_SD.Autentificação import *
-
-class Main(QtWidgets.QWidget):
+class Ui_Main:
     def setupUi(self, Main):
         Main.setObjectName('Main')
         Main.resize(640, 480)
-
+        
         self.QtStack = QtWidgets.QStackedLayout()
         
-        self.stack0 = QtWidgets.QMainWindow()
-        self.stack1 = QtWidgets.QMainWindow()
-        self.stack2 = QtWidgets.QMainWindow()
-        self.stack3 = QtWidgets.QMainWindow()
-        self.stack4 = QtWidgets.QMainWindow()
-        self.stack5 = QtWidgets.QMainWindow()
-        self.stack6 = QtWidgets.QMainWindow()
-        self.stack7 = QtWidgets.QMainWindow()
-        self.stack8 = QtWidgets.QMainWindow()
-        self.stack9 = QtWidgets.QMainWindow()
-        self.stack10 = QtWidgets.QMainWindow()
-        self.stack11 = QtWidgets.QMainWindow()
-        self.stack12 = QtWidgets.QMainWindow()
-
-        # Adiciona os widgets ao layout
-        self.QtStack.addWidget(self.stack0)
-        self.QtStack.addWidget(self.stack1)
-        self.QtStack.addWidget(self.stack2)
-        self.QtStack.addWidget(self.stack3)
-        self.QtStack.addWidget(self.stack4)
-        self.QtStack.addWidget(self.stack5)
-        self.QtStack.addWidget(self.stack6)
-        self.QtStack.addWidget(self.stack7)
-        self.QtStack.addWidget(self.stack8)
-        self.QtStack.addWidget(self.stack9)
-        self.QtStack.addWidget(self.stack10)
-        self.QtStack.addWidget(self.stack11)
-        self.QtStack.addWidget(self.stack12)
-
+        self.telas = {
+            'tela_inicial': QtWidgets.QWidget(),
+            'autentificação': QtWidgets.QWidget(),
+            'cadastro': QtWidgets.QWidget(),
+            'editar_livros': QtWidgets.QWidget(),
+            'tela_adicionar': QtWidgets.QWidget(),
+            'tela_listar': QtWidgets.QWidget(),
+            'tela_livros': QtWidgets.QWidget(),
+        }        
+    
+        self.tela_inicial = tela_inicial()
+        self.tela_inicial.setupUi(self.telas['tela_inicial'])
         
-        # ENTRA COM AS TELAS AQUI
-        self.Autentificação = Ui_Form()
-        self.Autentificação.setupUi(self.stack0)
+        self.autentificação = autentificação()
+        self.autentificação.setupUi(self.telas['autentificação'])
+
+        self.cadastro = cadastro()
+        self.cadastro.setupUi(self.telas['cadastro'])
         
-class Ui_Main(QMainWindow, Main):
+        self.editar_livros = editar_livros()
+        self.editar_livros.setupUi(self.telas['editar_livros'])
+        
+        self.tela_adicionar = tela_adicionar()
+        self.tela_adicionar.setupUi(self.telas['tela_adicionar'])
+                
+        self.tela_listar = tela_listar()
+        self.tela_listar.setupUi(self.telas['tela_listar'])
+
+        self.tela_livros = tela_livros()
+        self.tela_livros.setupUi(self.telas['tela_livros'])
+        
+        for tela in self.telas.values():
+            self.QtStack.addWidget(tela)
+
+class Main(QMainWindow):
     def __init__(self):
         super(Main, self).__init__(None)
-        self.setupUi(self)
+        
+        self.ui = Ui_Main()
+        self.ui.setupUi(self)
+
+    
+    #Aqui vai ficar os botões e a chamada das funções.
+    
+        #TELA INICIAL
+        self.ui.tela_inicial.confirm.clicked.connect(self.abrirTela('cadastro'))
+        self.ui.tela_inicial.confirm_2.clicked.connect(self.abrirTela('autentificação'))
+        
+        #TELA LOGIN
+        self.ui.autentificação.confirm_4.clicked.connect(self.retornar)
+        #TELA CADASTRO
+        self.ui.cadastro.confirm_4.clicked.connect(self.retornar)
+        
+        
+    def retornar(self):
+        if self.atual == "cadastro" or self.atual == "autentificação":
+            self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
+            self.atual = "tela_inicial"
 
 
+
+    def abrirTela(self, nome_tela):
+        def mudar_tela():
+            self.atual = nome_tela
+            self.ui.QtStack.setCurrentWidget(self.ui.telas[nome_tela])
+        return mudar_tela
+    
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = Main()
+    sys.exit(app.exec_())

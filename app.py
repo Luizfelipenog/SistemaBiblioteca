@@ -62,7 +62,7 @@ from Servicos.auth_service import criar_usuario, autenticar_usuario
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from telas_SD.autentificação import autentificação  
+from telas_SD.Autentificação import autentificação  
 from telas_SD.cadastro import cadastro  
 from telas_SD.editar_livros import editar_livros  
 from telas_SD.tela_adicionar import tela_adicionar  

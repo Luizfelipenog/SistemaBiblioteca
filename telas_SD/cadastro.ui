@@ -163,6 +163,46 @@ QPushButton:pressed {
     <string>Voltar</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="confirm_5">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>300</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Extra Bold</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color:White;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+QPushButton:hover {
+    background-color: Gray;
+    color: white;
+    border: 2px solid white;
+}
+
+QPushButton:pressed {
+    background-color:Gray;
+    border: 2px solid yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cadastrar</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
