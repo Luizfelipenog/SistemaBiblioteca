@@ -1,6 +1,8 @@
 from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
 from Servicos.auth_service import criar_usuario, autenticar_usuario
 
+from telas_SD import *
+
 def main():
     while True:
         print("\nMenu:")
