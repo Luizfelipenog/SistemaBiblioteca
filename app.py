@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
 # from Servicos.auth_service import criar_usuario, autenticar_usuario
+=======
+from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
+from Servicos.auth_service import criar_usuario, autenticar_usuario
+>>>>>>> 52ab71d42e350f39c07c439174d7a7679c31ce7f
 
 # def main():
 #     while True:
@@ -56,6 +61,7 @@
 #         else:
 #             print("Opção inválida. Tente novamente.")
 
+<<<<<<< HEAD
 # if __name__ == "__main__":
 #     main()
 
@@ -148,3 +154,10 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Main()
     sys.exit(app.exec_())
+=======
+if __name__ == "__main__":
+    main()
+
+
+# Tela principal, vamos rodar o programa por aqui!
+>>>>>>> 52ab71d42e350f39c07c439174d7a7679c31ce7f
