@@ -70,6 +70,7 @@ class autentificação(object):
         self.traducao_3.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
 "")
         self.traducao_3.setText("")
+        self.traducao_3.setEchoMode(QtWidgets.QLineEdit.Password)
         self.traducao_3.setObjectName("traducao_3")
         self.label_4 = QtWidgets.QLabel(Form)
         self.label_4.setGeometry(QtCore.QRect(70, 170, 101, 21))
@@ -127,3 +128,13 @@ class autentificação(object):
         self.label_4.setText(_translate("Form", "Email:"))
         self.label_5.setText(_translate("Form", "Senha:"))
         self.confirm_5.setText(_translate("Form", "Entrar"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = autentificação()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())

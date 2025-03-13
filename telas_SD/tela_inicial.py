@@ -16,7 +16,7 @@ class tela_inicial(object):
         Form.setObjectName("Form")
         Form.resize(747, 597)
         self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(250, -10, 291, 91))
+        self.label.setGeometry(QtCore.QRect(150, 60, 461, 91))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label.setFont(font)
@@ -80,15 +80,16 @@ class tela_inicial(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "Bem Vindo."))
+        self.label.setText(_translate("Form", "Bem Vindo ao sistema de biblioteca!!"))
         self.confirm.setText(_translate("Form", "Cadastro"))
         self.confirm_2.setText(_translate("Form", "Login"))
 
+
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)  # Cria a aplicação
-    Form = QtWidgets.QWidget()  # Cria o widget principal
-    ui = tela_inicial()  # Instancia a classe gerada
-    ui.setupUi(Form)  # Aplica o layout à janela
-    Form.show()  # Exibe a janela
-    sys.exit(app.exec_())  # Mantém a aplicação rodando
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = tela_inicial()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
