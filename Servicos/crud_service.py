@@ -1,4 +1,4 @@
-from firebase_config import db
+from BD.firebase_config import db
 
 def adicionar_livro(titulo, autor, paginas, ano):
     doc_ref = db.collection("livros").add({
@@ -7,7 +7,7 @@ def adicionar_livro(titulo, autor, paginas, ano):
         "paginas": paginas,
         "ano": ano
     })
-    print(f"Livro adicionado com sucesso! ID do livro: {doc_ref.id}")
+    print(f"Livro adicionado com sucesso! ID do livro: {doc_ref[1].id}")
 
 
 def listar_livros():

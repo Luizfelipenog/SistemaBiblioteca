@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
+class tela_livros(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(776, 650)
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)  # Cria a aplicação
     Form = QtWidgets.QWidget()  # Cria o widget principal
-    ui = Ui_Form()  # Instancia a classe gerada
+    ui = tela_livros()  # Instancia a classe gerada
     ui.setupUi(Form)  # Aplica o layout à janela
     Form.show()  # Exibe a janela
     sys.exit(app.exec_())  # Mantém a aplicação rodando
