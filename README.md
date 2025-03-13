@@ -39,19 +39,7 @@ cd Projeto_SD
 
 ### 🔹 2. Instale as Dependências
 
-Crie um ambiente virtual (opcional, mas recomendado):
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate  # Windows
-```
-
-Instale as dependências:
-```bash
-pip install -r requirements.txt
-```
-
-Caso o arquivo `requirements.txt` não esteja presente, instale manualmente:
+Instale:
 ```bash
 pip install PyQt5 firebase-admin
 ```
