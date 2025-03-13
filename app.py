@@ -202,46 +202,17 @@ class Main(QMainWindow):
             paginas = dados.get("paginas", "Páginas Desconhecidas")
             ano = dados.get("ano", "Ano Desconhecido")
 
-
+            # Atualiza os labels com as informações do livro clicado
             self.ui.editar_livros.informacoes.setText(titulo)
             self.ui.editar_livros.informacoes_2.setText(autor)
             self.ui.editar_livros.informacoes_3.setText(str(paginas))
             self.ui.editar_livros.informacoes_4.setText(str(ano))
         else:
-
+            # Caso não encontre os dados
             self.ui.editar_livros.informacoes.setText("Desconhecido")
             self.ui.editar_livros.informacoes_2.setText("")
             self.ui.editar_livros.informacoes_3.setText("")
             self.ui.editar_livros.informacoes_4.setText("")
-               
-    # Tela Detalhes
-    def exibir_livros(self):
-        self.ui.tela_listar.lista.clear()  # Limpa a lista antes de adicionar novos itens
-        livros = listar_livros()  # Obtém os livros
-
-        if not livros:
-            self.ui.tela_listar.lista.addItem("Nenhum livro encontrado")
-            return
-
-        # Itera sobre os livros e adiciona os detalhes na lista
-        for id_livro, dados in livros.items():
-            if isinstance(dados, dict):  # Verifica se dados é um dicionário
-                titulo = dados.get('titulo', 'Título Desconhecido')
-                autor = dados.get('autor', 'Desconhecido')
-                ano = dados.get('ano', 'Desconhecido')
-                paginas = dados.get('paginas', 'Desconhecido')
-
-                # Formata os detalhes do livro
-                detalhes = (f"📖 {titulo}\n"
-                            f"✍️ Autor: {autor}\n"
-                            f"📅 Ano: {ano}\n"
-                            f"📄 Páginas: {paginas}\n"
-                            f"━━━━━━━━━━━━━━━━━━")
-
-                item = QtWidgets.QListWidgetItem(detalhes)  # Cria o item na lista
-                item.setData(QtCore.Qt.UserRole, dados)  # Associa os dados ao item
-
-                self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
             
             
