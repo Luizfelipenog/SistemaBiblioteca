@@ -129,32 +129,54 @@ class Main(QMainWindow):
         #TELA LOGIN
         self.ui.autentificação.confirm_4.clicked.connect(self.tela_inicial)
         self.ui.autentificação.confirm_5.clicked.connect(self.autenticar_usuario)
-        self.ui.autentificação.traducao_2.returnPressed.connect(self.desce)
+        self.ui.autentificação.traducao_2.returnPressed.connect(lambda: self.ui.autentificação.traducao_3.setFocus())
         self.ui.autentificação.traducao_3.returnPressed.connect(self.autenticar_usuario)
 
         #TELA CADASTRO
         self.ui.cadastro.confirm_4.clicked.connect(self.tela_inicial)
         self.ui.cadastro.confirm_5.clicked.connect(self.cadastrar_usuario)
-        self.ui.cadastro.traducao_2.returnPressed.connect(self.desce)
+        self.ui.cadastro.traducao_2.returnPressed.connect(lambda: self.ui.cadastro.traducao_3.setFocus())
         self.ui.cadastro.traducao_3.returnPressed.connect(self.cadastrar_usuario)
-    
+        
+        #TELA LIVROS
+        self.ui.tela_livros.confirm_4.clicked.connect(self.tela_inicial)
+        self.ui.tela_livros.confirm.clicked.connect(self.abrirTela('tela_adicionar'))
+        self.ui.tela_livros.confirm_2.clicked.connect(self.abrirTela('editar_livros'))
+        self.ui.tela_livros.confirm_3.clicked.connect(self.abrirTela('tela_listar'))
+        
+        #TELA ADICIONAR
+        self.ui.tela_adicionar.confirm_4.clicked.connect(self.abrirTela("tela_livros")) 
+        self.ui.tela_adicionar.palavra.returnPressed.connect(lambda: self.ui.tela_adicionar.palavra_2.setFocus())       
+        self.ui.tela_adicionar.palavra_2.returnPressed.connect(lambda: self.ui.tela_adicionar.traducao_3.setFocus())
+        self.ui.tela_adicionar.traducao_3.returnPressed.connect(lambda: self.ui.tela_adicionar.traducao_4.setFocus())
+        # self.ui.tela_adicionar.traducao_4.returnPressed.connect()
+        
+        #TELA EDITAR
+        self.ui.editar_livros.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
+        
+        #TELA LISTAR
+        self.ui.tela_listar.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
+        
     # Funções
     
-    def desce(self):
-        if self.atual == "autentificação":
-            self.ui.autentificação.traducao_3.setFocus()
-        elif self.atual == "cadastro":
-            self.ui.cadastro.traducao_3.setFocus()
-    
     def tela_inicial(self):
-        if self.atual == "cadastro" or self.atual == "autentificação":
+        if self.atual == "cadastro" or self.atual == "autentificação" or self.atual == "tela_livros":
             self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
             self.atual = "tela_inicial"
 
     def abrirTela(self, nome_tela):
+        self.atual = nome_tela
+        # Verifica se a tela a ser aberta é 'tela_adicionar' e limpa os campos
+        if nome_tela == "tela_adicionar":
+            self.ui.tela_adicionar.palavra.setText("")
+            self.ui.tela_adicionar.palavra_2.setText("")
+            self.ui.tela_adicionar.traducao_3.setText("")
+            self.ui.tela_adicionar.traducao_4.setText("")
+
+        # Função interna para mudar a tela
         def mudar_tela():
-            self.atual = nome_tela
             self.ui.QtStack.setCurrentWidget(self.ui.telas[nome_tela])
+
         return mudar_tela
     
     # Tela de cadastro
@@ -191,7 +213,8 @@ class Main(QMainWindow):
                     QtWidgets.QMessageBox.information(self, 'Sucesso', 'Usuário autenticado com sucesso!')
                     self.ui.autentificação.traducao_3.setText("")
                     self.ui.autentificação.traducao_2.setText("")
-                    self.tela_inicial()
+                    self.atual = "tela_livros"
+                    self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_livros'])
 
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Erro', f'Ocorreu um erro: {e}')
