@@ -129,17 +129,20 @@ class Main(QMainWindow):
         #TELA LOGIN
         self.ui.autentificação.confirm_4.clicked.connect(self.tela_inicial)
         self.ui.autentificação.confirm_5.clicked.connect(self.autenticar_usuario)
+        self.ui.autentificação.traducao_2.returnPressed.connect(self.desce)
+        self.ui.autentificação.traducao_3.returnPressed.connect(self.autenticar_usuario)
+
         #TELA CADASTRO
         self.ui.cadastro.confirm_4.clicked.connect(self.tela_inicial)
         self.ui.cadastro.confirm_5.clicked.connect(self.cadastrar_usuario)
+        self.ui.cadastro.traducao_2.returnPressed.connect(self.desce)
+        self.ui.cadastro.traducao_3.returnPressed.connect(self.cadastrar_usuario)
     
     # Funções
-    
     def tela_inicial(self):
         if self.atual == "cadastro" or self.atual == "autentificação":
             self.ui.QtStack.setCurrentWidget(self.ui.telas['tela_inicial'])
             self.atual = "tela_inicial"
-
 
 
     def abrirTela(self, nome_tela):
@@ -151,19 +154,18 @@ class Main(QMainWindow):
     
     # Tela de cadastro
     def cadastrar_usuario(self):
-        email = self.ui.cadastro.palavra.text()
-        senha = self.ui.cadastro.traducao.text()
-
-        if not email or not senha:
+        if self.ui.cadastro.traducao_2.text() == "" or self.ui.cadastro.traducao_3.text() == "":
             QtWidgets.QMessageBox.information(self, 'Erro', 'Digite valores válidos.')
-        elif len(senha) < 6: 
+        elif len(self.ui.cadastro.traducao_3.text()) < 6: 
             QtWidgets.QMessageBox.information(self, 'Erro', 'A senha deve ter pelo menos 6 caracteres.')
         else:
-            verif = criar_usuario(email, senha)
+            verif = criar_usuario(self.ui.cadastro.traducao_2.text(), self.ui.cadastro.traducao_3.text())
             if verif == None:
                 QtWidgets.QMessageBox.information(self, 'Erro', 'Email inválido.')
             else:
                 QtWidgets.QMessageBox.information(self, 'Sucesso', 'Usuário cadastrado com sucesso!')
+                self.ui.cadastro.traducao_3.setText("")
+                self.ui.cadastro.traducao_2.setText("")
                 self.tela_inicial()
 
         
@@ -182,6 +184,8 @@ class Main(QMainWindow):
                     QtWidgets.QMessageBox.information(self, 'Erro', 'Email ou senha inválidos.')
                 else:
                     QtWidgets.QMessageBox.information(self, 'Sucesso', 'Usuário autenticado com sucesso!')
+                    self.ui.autentificação.traducao_3.setText("")
+                    self.ui.autentificação.traducao_2.setText("")
                     self.tela_inicial()
 
         except Exception as e:
