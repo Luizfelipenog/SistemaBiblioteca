@@ -60,7 +60,7 @@ from Servicos.auth_service import criar_usuario, autenticar_usuario
 #     main()
 
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from telas_SD.Autentificação import autentificação  
 from telas_SD.cadastro import cadastro  
@@ -152,7 +152,13 @@ class Main(QMainWindow):
         # self.ui.tela_adicionar.traducao_4.returnPressed.connect()
         
         #TELA EDITAR
+        self.ui.tela_livros.confirm_2.clicked.connect(lambda: (self.carregar_lista_livros(), self.abrirTela('editar_livros')()))
         self.ui.editar_livros.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
+        # Conectando o clique do item da lista com a função mostrar_detalhes
+        self.ui.editar_livros.lista.itemClicked.connect(self.mostrar_detalhes)
+
+
+
         
         #TELA LISTAR
         self.ui.tela_listar.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
@@ -220,9 +226,65 @@ class Main(QMainWindow):
 
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Erro', f'Ocorreu um erro: {e}')
+        
+            
+    def carregar_lista_livros(self):
+        self.ui.editar_livros.lista.clear()  # Limpa a lista antes de adicionar novos itens
+        livros = listar_livros()  # Obtém os livros
 
-            
-            
+        if not livros:
+            self.ui.editar_livros.lista.addItem("Nenhum livro encontrado")
+            return
+
+        for id_livro, dados in livros.items():
+            if dados:
+                # Formata os detalhes do livro em um bloco de texto
+                detalhes = (f"📖 {dados.get('titulo', 'Título Desconhecido')}\n"
+                            f"✍️ Autor: {dados.get('autor', 'Desconhecido')}\n"
+                            f"📅 Ano: {dados.get('ano', 'Desconhecido')}\n"
+                            f"📄 Páginas: {dados.get('paginas', 'Desconhecido')}\n"
+                            f"━━━━━━━━━━━━━━━━━━")
+
+                # Cria o item na lista
+                item = QtWidgets.QListWidgetItem(detalhes)
+
+                # Associa os dados completos do livro ao item para futura recuperação
+                item.setData(QtCore.Qt.UserRole, dados)
+
+                # Adiciona o item à lista
+                self.ui.editar_livros.lista.addItem(item)
+                
+                
+    def mostrar_detalhes(self, item):
+        # Obtém os dados do item clicado (ID do livro associado ao item)
+        dados = item.data(QtCore.Qt.UserRole)
+        
+        if dados:
+            titulo = dados.get("titulo", "Título Desconhecido")
+            autor = dados.get("autor", "Autor Desconhecido")
+            paginas = dados.get("paginas", "Páginas Desconhecidas")
+            ano = dados.get("ano", "Ano Desconhecido")
+
+            # Atualiza os labels com as informações do livro clicado
+            self.ui.editar_livros.informacoes.setText(titulo)
+            self.ui.editar_livros.informacoes_2.setText(autor)
+            self.ui.editar_livros.informacoes_3.setText(str(paginas))
+            self.ui.editar_livros.informacoes_4.setText(str(ano))
+        else:
+            # Caso não encontre os dados
+            self.ui.editar_livros.informacoes.setText("Desconhecido")
+            self.ui.editar_livros.informacoes_2.setText("")
+            self.ui.editar_livros.informacoes_3.setText("")
+            self.ui.editar_livros.informacoes_4.setText("")
+
+
+
+
+
+    
+
+                
+                
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

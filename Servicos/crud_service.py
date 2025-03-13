@@ -11,9 +11,14 @@ def adicionar_livro(titulo, autor, paginas, ano):
 
 
 def listar_livros():
-    livros = db.collection("livros").stream()
-    for livro in livros:
-        print(f"{livro.id} => {livro.to_dict()}")
+    livros_ref = db.collection("livros").stream()
+    livros = {}
+
+    for doc in livros_ref:
+        livros[doc.id] = doc.to_dict() 
+
+    return livros
+
 
 
 
