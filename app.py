@@ -1,5 +1,5 @@
-from crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
-from auth_service import criar_usuario, autenticar_usuario
+from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
+from Servicos.auth_service import criar_usuario, autenticar_usuario
 
 def main():
     while True:
@@ -58,3 +58,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Tela principal, vamos rodar o programa por aqui!
