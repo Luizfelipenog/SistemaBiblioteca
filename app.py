@@ -102,6 +102,7 @@ class Main(QMainWindow):
         self.ui.editar_livros.lista.itemClicked.connect(self.mostrar_detalhes)
         
         #TELA LISTAR
+        self.ui.tela_livros.confirm_3.clicked.connect(lambda: (self.exibir_livros(), self.abrirTela('tela_listar')()))
         self.ui.tela_listar.confirm_4.clicked.connect(lambda:self.abrirTela("tela_livros")())
         
     # Funções
@@ -143,8 +144,7 @@ class Main(QMainWindow):
                 self.ui.cadastro.traducao_2.setText("")
                 self.tela_inicial()
 
-    #TELA DE LOGIN
-        
+    #TELA DE LOGIN 
     def autenticar_usuario(self):
         try:
             email = self.ui.autentificação.traducao_2.text()
@@ -167,8 +167,8 @@ class Main(QMainWindow):
             QtWidgets.QMessageBox.critical(self, 'Erro', f'Ocorreu um erro: {e}')
             
     def carregar_lista_livros(self):
-        self.ui.editar_livros.lista.clear()  # Limpa a lista antes de adicionar novos itens
-        livros = listar_livros()  # Obtém os livros
+        self.ui.editar_livros.lista.clear()
+        livros = listar_livros()  
 
         if not livros:
             self.ui.editar_livros.lista.addItem("Nenhum livro encontrado")
@@ -176,25 +176,24 @@ class Main(QMainWindow):
 
         for id_livro, dados in livros.items():
             if dados:
-                # Formata os detalhes do livro em um bloco de texto
                 detalhes = (f"📖 {dados.get('titulo', 'Título Desconhecido')}\n"
                             f"✍️ Autor: {dados.get('autor', 'Desconhecido')}\n"
                             f"📅 Ano: {dados.get('ano', 'Desconhecido')}\n"
                             f"📄 Páginas: {dados.get('paginas', 'Desconhecido')}\n"
                             f"━━━━━━━━━━━━━━━━━━")
 
-                # Cria o item na lista
+
                 item = QtWidgets.QListWidgetItem(detalhes)
 
-                # Associa os dados completos do livro ao item para futura recuperação
+
                 item.setData(QtCore.Qt.UserRole, dados)
 
-                # Adiciona o item à lista
+      
                 self.ui.editar_livros.lista.addItem(item)
                 
                 
     def mostrar_detalhes(self, item):
-        # Obtém os dados do item clicado (ID do livro associado ao item)
+
         dados = item.data(QtCore.Qt.UserRole)
         
         if dados:
@@ -203,17 +202,46 @@ class Main(QMainWindow):
             paginas = dados.get("paginas", "Páginas Desconhecidas")
             ano = dados.get("ano", "Ano Desconhecido")
 
-            # Atualiza os labels com as informações do livro clicado
+
             self.ui.editar_livros.informacoes.setText(titulo)
             self.ui.editar_livros.informacoes_2.setText(autor)
             self.ui.editar_livros.informacoes_3.setText(str(paginas))
             self.ui.editar_livros.informacoes_4.setText(str(ano))
         else:
-            # Caso não encontre os dados
+
             self.ui.editar_livros.informacoes.setText("Desconhecido")
             self.ui.editar_livros.informacoes_2.setText("")
             self.ui.editar_livros.informacoes_3.setText("")
             self.ui.editar_livros.informacoes_4.setText("")
+               
+    # Tela Detalhes
+    def exibir_livros(self):
+        self.ui.tela_listar.lista.clear()  # Limpa a lista antes de adicionar novos itens
+        livros = listar_livros()  # Obtém os livros
+
+        if not livros:
+            self.ui.tela_listar.lista.addItem("Nenhum livro encontrado")
+            return
+
+        # Itera sobre os livros e adiciona os detalhes na lista
+        for id_livro, dados in livros.items():
+            if isinstance(dados, dict):  # Verifica se dados é um dicionário
+                titulo = dados.get('titulo', 'Título Desconhecido')
+                autor = dados.get('autor', 'Desconhecido')
+                ano = dados.get('ano', 'Desconhecido')
+                paginas = dados.get('paginas', 'Desconhecido')
+
+                # Formata os detalhes do livro
+                detalhes = (f"📖 {titulo}\n"
+                            f"✍️ Autor: {autor}\n"
+                            f"📅 Ano: {ano}\n"
+                            f"📄 Páginas: {paginas}\n"
+                            f"━━━━━━━━━━━━━━━━━━")
+
+                item = QtWidgets.QListWidgetItem(detalhes)  # Cria o item na lista
+                item.setData(QtCore.Qt.UserRole, dados)  # Associa os dados ao item
+
+                self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
             
             
