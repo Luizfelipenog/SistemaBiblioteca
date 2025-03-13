@@ -24,17 +24,6 @@ class editar_livros(object):
         font.setPointSize(10)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.informacoes = QtWidgets.QLabel(Form)
-        self.informacoes.setGeometry(QtCore.QRect(300, 40, 221, 41))
-        font = QtGui.QFont()
-        font.setFamily("Rockwell Extra Bold")
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
-        self.informacoes.setFont(font)
-        self.informacoes.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
-"")
-        self.informacoes.setObjectName("informacoes")
         self.confirm_4 = QtWidgets.QPushButton(Form)
         self.confirm_4.setGeometry(QtCore.QRect(0, 610, 101, 41))
         font = QtGui.QFont()
@@ -61,39 +50,106 @@ class editar_livros(object):
 "    border: 2px solid yellow;\n"
 "}")
         self.confirm_4.setObjectName("confirm_4")
-        self.informacoes_2 = QtWidgets.QLabel(Form)
-        self.informacoes_2.setGeometry(QtCore.QRect(300, 100, 221, 41))
+        self.ano = QtWidgets.QLineEdit(Form)
+        self.ano.setGeometry(QtCore.QRect(300, 240, 391, 41))
+        font = QtGui.QFont()
+        font.setFamily("Nirmala Text")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
+        self.ano.setFont(font)
+        self.ano.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
+"")
+        self.ano.setText("")
+        self.ano.setObjectName("ano")
+        self.autor = QtWidgets.QLineEdit(Form)
+        self.autor.setGeometry(QtCore.QRect(300, 100, 391, 41))
+        font = QtGui.QFont()
+        font.setFamily("Nirmala Text")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
+        self.autor.setFont(font)
+        self.autor.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
+"")
+        self.autor.setText("")
+        self.autor.setObjectName("autor")
+        self.Titulo = QtWidgets.QLineEdit(Form)
+        self.Titulo.setGeometry(QtCore.QRect(300, 30, 391, 41))
+        font = QtGui.QFont()
+        font.setFamily("Nirmala Text")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
+        self.Titulo.setFont(font)
+        self.Titulo.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
+"")
+        self.Titulo.setText("")
+        self.Titulo.setObjectName("Titulo")
+        self.paginas = QtWidgets.QLineEdit(Form)
+        self.paginas.setGeometry(QtCore.QRect(300, 170, 391, 41))
+        font = QtGui.QFont()
+        font.setFamily("Nirmala Text")
+        font.setPointSize(15)
+        font.setBold(False)
+        font.setWeight(50)
+        self.paginas.setFont(font)
+        self.paginas.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
+"")
+        self.paginas.setText("")
+        self.paginas.setObjectName("paginas")
+        self.confirm_5 = QtWidgets.QPushButton(Form)
+        self.confirm_5.setGeometry(QtCore.QRect(300, 300, 141, 41))
         font = QtGui.QFont()
         font.setFamily("Rockwell Extra Bold")
-        font.setPointSize(20)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
-        self.informacoes_2.setFont(font)
-        self.informacoes_2.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
-"")
-        self.informacoes_2.setObjectName("informacoes_2")
-        self.informacoes_3 = QtWidgets.QLabel(Form)
-        self.informacoes_3.setGeometry(QtCore.QRect(300, 160, 221, 41))
+        self.confirm_5.setFont(font)
+        self.confirm_5.setStyleSheet("QPushButton {\n"
+"    background-color:White;\n"
+"    color: black;\n"
+"    border-radius: 10px;\n"
+"    border: 2px solid black;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: Gray;\n"
+"    color: white;\n"
+"    border: 2px solid white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color:Gray;\n"
+"    border: 2px solid yellow;\n"
+"}")
+        self.confirm_5.setObjectName("confirm_5")
+        self.confirm_6 = QtWidgets.QPushButton(Form)
+        self.confirm_6.setGeometry(QtCore.QRect(540, 300, 141, 41))
         font = QtGui.QFont()
         font.setFamily("Rockwell Extra Bold")
-        font.setPointSize(20)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
-        self.informacoes_3.setFont(font)
-        self.informacoes_3.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
-"")
-        self.informacoes_3.setObjectName("informacoes_3")
-        self.informacoes_4 = QtWidgets.QLabel(Form)
-        self.informacoes_4.setGeometry(QtCore.QRect(300, 220, 221, 41))
-        font = QtGui.QFont()
-        font.setFamily("Rockwell Extra Bold")
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
-        self.informacoes_4.setFont(font)
-        self.informacoes_4.setStyleSheet("background-color: lightblue; /* Azul claro */\n"
-"")
-        self.informacoes_4.setObjectName("informacoes_4")
+        self.confirm_6.setFont(font)
+        self.confirm_6.setStyleSheet("QPushButton {\n"
+"    background-color:White;\n"
+"    color: black;\n"
+"    border-radius: 10px;\n"
+"    border: 2px solid black;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: Gray;\n"
+"    color: white;\n"
+"    border: 2px solid white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color:Gray;\n"
+"    border: 2px solid yellow;\n"
+"}")
+        self.confirm_6.setObjectName("confirm_6")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -102,17 +158,6 @@ class editar_livros(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label.setText(_translate("Form", "Livros"))
-        self.informacoes.setText(_translate("Form", "TextLabel"))
         self.confirm_4.setText(_translate("Form", "Voltar"))
-        self.informacoes_2.setText(_translate("Form", "TextLabel"))
-        self.informacoes_3.setText(_translate("Form", "TextLabel"))
-        self.informacoes_4.setText(_translate("Form", "TextLabel"))
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)  # Cria a aplicação
-    Form = QtWidgets.QWidget()  # Cria o widget principal
-    ui = editar_livros()  # Instancia a classe gerada
-    ui.setupUi(Form)  # Aplica o layout à janela
-    Form.show()  # Exibe a janela
-    sys.exit(app.exec_())  # Mantém a aplicação rodando
+        self.confirm_5.setText(_translate("Form", "Concluir"))
+        self.confirm_6.setText(_translate("Form", "Excluir"))

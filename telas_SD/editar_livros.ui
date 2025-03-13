@@ -41,31 +41,6 @@
     <string>Livros</string>
    </property>
   </widget>
-  <widget class="QLabel" name="informacoes">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>40</y>
-     <width>221</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Rockwell Extra Bold</family>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: lightblue; /* Azul claro */
-</string>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="confirm_4">
    <property name="geometry">
     <rect>
@@ -106,21 +81,46 @@ QPushButton:pressed {
     <string>Voltar</string>
    </property>
   </widget>
-  <widget class="QLabel" name="informacoes_2">
+  <widget class="QLineEdit" name="ano">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>240</y>
+     <width>391</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nirmala Text</family>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: lightblue; /* Azul claro */
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="autor">
    <property name="geometry">
     <rect>
      <x>300</x>
      <y>100</y>
-     <width>221</width>
+     <width>391</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Rockwell Extra Bold</family>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Nirmala Text</family>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -128,24 +128,24 @@ QPushButton:pressed {
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="informacoes_3">
+  <widget class="QLineEdit" name="Titulo">
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>160</y>
-     <width>221</width>
+     <y>30</y>
+     <width>391</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Rockwell Extra Bold</family>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Nirmala Text</family>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -153,24 +153,24 @@ QPushButton:pressed {
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="informacoes_4">
+  <widget class="QLineEdit" name="paginas">
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>220</y>
-     <width>221</width>
+     <y>170</y>
+     <width>391</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Rockwell Extra Bold</family>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Nirmala Text</family>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -178,7 +178,87 @@ QPushButton:pressed {
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="confirm_5">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>300</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Extra Bold</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color:White;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+QPushButton:hover {
+    background-color: Gray;
+    color: white;
+    border: 2px solid white;
+}
+
+QPushButton:pressed {
+    background-color:Gray;
+    border: 2px solid yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Concluir</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="confirm_6">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>300</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell Extra Bold</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color:White;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+QPushButton:hover {
+    background-color: Gray;
+    color: white;
+    border: 2px solid white;
+}
+
+QPushButton:pressed {
+    background-color:Gray;
+    border: 2px solid yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Excluir</string>
    </property>
   </widget>
  </widget>

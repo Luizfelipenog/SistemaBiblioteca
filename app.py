@@ -204,16 +204,16 @@ class Main(QMainWindow):
             ano = dados.get("ano", "Ano Desconhecido")
 
             # Atualiza os labels com as informações do livro clicado
-            self.ui.editar_livros.informacoes.setText(titulo)
-            self.ui.editar_livros.informacoes_2.setText(autor)
-            self.ui.editar_livros.informacoes_3.setText(str(paginas))
-            self.ui.editar_livros.informacoes_4.setText(str(ano))
+            self.ui.editar_livros.Titulo.setText(titulo)
+            self.ui.editar_livros.autor.setText(autor)
+            self.ui.editar_livros.paginas.setText(str(paginas))
+            self.ui.editar_livros.ano.setText(str(ano))
         else:
             # Caso não encontre os dados
-            self.ui.editar_livros.informacoes.setText("Desconhecido")
-            self.ui.editar_livros.informacoes_2.setText("")
-            self.ui.editar_livros.informacoes_3.setText("")
-            self.ui.editar_livros.informacoes_4.setText("")
+            self.ui.editar_livros.Titulo.setText("Desconhecido")
+            self.ui.editar_livros.autor.setText("")
+            self.ui.editar_livros.paginas.setText("")
+            self.ui.editar_livros.ano.setText("")
 
             
             
