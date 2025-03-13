@@ -93,7 +93,8 @@ class Main(QMainWindow):
         self.ui.tela_adicionar.palavra.returnPressed.connect(lambda: self.ui.tela_adicionar.palavra_2.setFocus())       
         self.ui.tela_adicionar.palavra_2.returnPressed.connect(lambda: self.ui.tela_adicionar.traducao_3.setFocus())
         self.ui.tela_adicionar.traducao_3.returnPressed.connect(lambda: self.ui.tela_adicionar.traducao_4.setFocus())
-        # self.ui.tela_adicionar.traducao_4.returnPressed.connect(self.add)
+        self.ui.tela_adicionar.traducao_4.returnPressed.connect(self.add)
+        self.ui.tela_adicionar.pushButton.clicked.connect(self.add)
         
         #TELA EDITAR
         self.ui.tela_livros.confirm_2.clicked.connect(lambda: (self.carregar_lista_livros(), self.abrirTela('editar_livros')()))
@@ -203,16 +204,16 @@ class Main(QMainWindow):
             ano = dados.get("ano", "Ano Desconhecido")
 
 
-            self.ui.editar_livros.informacoes.setText(titulo)
-            self.ui.editar_livros.informacoes_2.setText(autor)
-            self.ui.editar_livros.informacoes_3.setText(str(paginas))
-            self.ui.editar_livros.informacoes_4.setText(str(ano))
+            self.ui.editar_livros.Titulo.setText(titulo)
+            self.ui.editar_livros.autor.setText(autor)
+            self.ui.editar_livros.paginas.setText(str(paginas))
+            self.ui.editar_livros.ano.setText(str(ano))
         else:
 
-            self.ui.editar_livros.informacoes.setText("Desconhecido")
-            self.ui.editar_livros.informacoes_2.setText("")
-            self.ui.editar_livros.informacoes_3.setText("")
-            self.ui.editar_livros.informacoes_4.setText("")
+            self.ui.editar_livros.Titulo.setText("Desconhecido")
+            self.ui.editar_livros.autor.setText("")
+            self.ui.editar_livros.paginas.setText("")
+            self.ui.editar_livros.ano.setText("")
                
     # Tela Detalhes
     def exibir_livros(self):
@@ -243,7 +244,16 @@ class Main(QMainWindow):
 
                 self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
-            
+    def add(self):
+        titulo = self.ui.tela_adicionar.palavra.text()
+        autor = self.ui.tela_adicionar.palavra_2.text()
+        paginas = self.ui.tela_adicionar.traducao_3.text()
+        ano = self.ui.tela_adicionar.traducao_4.text()
+        adicionar_livro(titulo,autor,paginas,ano)
+        self.ui.tela_adicionar.palavra.setText("")
+        self.ui.tela_adicionar.palavra_2.setText("")
+        self.ui.tela_adicionar.traducao_3.setText("")
+        self.ui.tela_adicionar.traducao_4.setText("")
             
 
 if __name__ == '__main__':
