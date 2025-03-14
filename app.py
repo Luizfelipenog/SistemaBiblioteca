@@ -1,5 +1,6 @@
-from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro
+from Servicos.crud_service import adicionar_livro, listar_livros, atualizar_livro, deletar_livro, gerar_id_unico
 from Servicos.auth_service import criar_usuario, autenticar_usuario
+import random
 
 import sys
 from PyQt5 import QtWidgets, QtCore
@@ -99,8 +100,10 @@ class Main(QMainWindow):
         #TELA EDITAR
         self.ui.tela_livros.confirm_2.clicked.connect(lambda: (self.carregar_lista_livros(), self.abrirTela('editar_livros')()))
         self.ui.editar_livros.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
-        # Conectando o clique do item da lista com a função mostrar_detalhes
         self.ui.editar_livros.lista.itemClicked.connect(self.mostrar_detalhes)
+        self.ui.editar_livros.confirm_5.clicked.connect(self.editar_livro)
+
+
         
         #TELA LISTAR
         self.ui.tela_livros.confirm_3.clicked.connect(lambda: (self.exibir_livros(), self.abrirTela('tela_listar')()))
@@ -194,7 +197,6 @@ class Main(QMainWindow):
                 
                 
     def mostrar_detalhes(self, item):
-
         dados = item.data(QtCore.Qt.UserRole)
         
         if dados:
@@ -245,16 +247,69 @@ class Main(QMainWindow):
                 self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
     def add(self):
+        id = gerar_id_unico()
         titulo = self.ui.tela_adicionar.palavra.text()
         autor = self.ui.tela_adicionar.palavra_2.text()
         paginas = self.ui.tela_adicionar.traducao_3.text()
         ano = self.ui.tela_adicionar.traducao_4.text()
-        adicionar_livro(titulo,autor,paginas,ano)
+        adicionar_livro(id,titulo,autor,paginas,ano)
         self.ui.tela_adicionar.palavra.setText("")
         self.ui.tela_adicionar.palavra_2.setText("")
         self.ui.tela_adicionar.traducao_3.setText("")
         self.ui.tela_adicionar.traducao_4.setText("")
-            
+        
+    def editar_livro(self):
+        # Obtém os novos dados do formulário
+        novo_titulo = self.ui.editar_livros.Titulo.text()
+        novo_autor = self.ui.editar_livros.autor.text()
+        novo_paginas = self.ui.editar_livros.paginas.text()
+        novo_ano = self.ui.editar_livros.ano.text()
+
+        # Obtém o item selecionado na lista
+        item_selecionado = self.ui.editar_livros.lista.currentItem()
+        if not item_selecionado:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Nenhum livro selecionado.')
+            return
+
+        # Extrai os dados associados ao item e obtém o ID do livro
+        dados = item_selecionado.data(QtCore.Qt.UserRole)
+        if not dados or not isinstance(dados, dict):
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Dados do livro inválidos.')
+            return
+
+        # Extraia somente o ID
+        id_livro = dados.get('id')
+        if not id_livro:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'ID do livro não encontrado.')
+            return
+
+        # Cria o dicionário com os dados atualizados
+        livro_atualizado = {
+            'titulo': novo_titulo,
+            'autor': novo_autor,
+            'ano': novo_ano,
+            'paginas': novo_paginas
+        }
+
+        # Chama a função para atualizar o livro usando o ID extraído
+        resultado = atualizar_livro(id_livro, livro_atualizado)
+        print(f"Mandando", resultado)
+        if resultado:
+            novo_texto = (f"📖 {novo_titulo}\n"
+                        f"✍️ Autor: {novo_autor}\n"
+                        f"📅 Ano: {novo_ano}\n"
+                        f"📄 Páginas: {novo_paginas}\n"
+                        f"━━━━━━━━━━━━━━━━━━")
+            item_selecionado.setText(novo_texto)
+            dados.update(livro_atualizado)
+            item_selecionado.setData(QtCore.Qt.UserRole, dados)
+            self.abrirTela("tela_livros")()
+        else:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Erro ao atualizar o livro.')
+
+
+
+                
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

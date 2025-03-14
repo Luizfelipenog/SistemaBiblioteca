@@ -1,7 +1,9 @@
 from BD.firebase_config import db
+import random
 
-def adicionar_livro(titulo, autor, paginas, ano):
+def adicionar_livro(id,titulo, autor, paginas, ano):
     doc_ref = db.collection("livros").add({
+        "id": id,
         "titulo": titulo,
         "autor": autor,
         "paginas": paginas,
@@ -23,18 +25,25 @@ def listar_livros():
 
 
 
-def atualizar_livro(titulo, novos_dados):
-    livros_ref = db.collection("livros").where("titulo", "==", titulo).stream()
+def atualizar_livro(id_livro, novos_dados):
+    # Obtém todos os livros da coleção
+    livros_ref = db.collection("livros").stream()
+    print(livros_ref)
+    for doc in livros_ref:
+        # Se o id do documento corresponder ao id fornecido
+        if doc.id == str(id_livro):  # Compara os IDs
+            # Atualiza os dados do livro
+            livro_ref = db.collection("livros").document(doc.id)
+            livro_ref.update(novos_dados)
+            print(f"Livro com ID '{id_livro}' atualizado com sucesso!")
+            return True  # Retorna True indicando sucesso
+    
+    # Se nenhum livro com o ID fornecido foi encontrado
+    print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
+    return False  # Retorna False caso o livro não seja encontrado
 
-    livros_encontrados = [livro for livro in livros_ref]
 
-    if not livros_encontrados:
-        print(f"Erro: Nenhum livro encontrado com o título '{titulo}'")
-        return
 
-    for livro in livros_encontrados:
-        livro.reference.update(novos_dados)
-        print(f"Livro '{titulo}' atualizado com sucesso!")
 
 
 def deletar_livro(id):
@@ -51,4 +60,19 @@ def deletar_livro(id):
     except Exception as e:
         print(f"Erro ao deletar livro: {e}")
         
+        
+
+
+ids_gerados = set()
+
+# Função para gerar um ID único
+def gerar_id_unico():
+    while True:
+        # Gera um ID aleatório entre 1 e 1000
+        id_aleatorio = random.randint(1, 10000)
+        
+        # Se o ID já foi gerado, continue tentando
+        if id_aleatorio not in ids_gerados:
+            ids_gerados.add(id_aleatorio)  # Adiciona o ID ao conjunto
+            return id_aleatorio
 
