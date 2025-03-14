@@ -182,8 +182,8 @@ class Main(QMainWindow):
             if dados:
                 detalhes = (f"📖 {dados.get('titulo', 'Título Desconhecido')}\n"
                             f"✍️ Autor: {dados.get('autor', 'Desconhecido')}\n"
-                            f"📄 Páginas: {dados.get('paginas', 'Desconhecido')}\n"
                             f"📅 Ano: {dados.get('ano', 'Desconhecido')}\n"
+                            f"📄 Páginas: {dados.get('paginas', 'Desconhecido')}\n"
                             f"━━━━━━━━━━━━━━━━━━")
 
 
@@ -237,8 +237,8 @@ class Main(QMainWindow):
                 # Formata os detalhes do livro
                 detalhes = (f"📖 {titulo}\n"
                             f"✍️ Autor: {autor}\n"
-                            f"📄 Páginas: {paginas}\n"
                             f"📅 Ano: {ano}\n"
+                            f"📄 Páginas: {paginas}\n"
                             f"━━━━━━━━━━━━━━━━━━")
 
                 item = QtWidgets.QListWidgetItem(detalhes)  # Cria o item na lista.
@@ -247,23 +247,16 @@ class Main(QMainWindow):
                 self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
     def add(self):
-        titulo = self.ui.tela_adicionar.palavra.text().strip()
-        autor = self.ui.tela_adicionar.palavra_2.text().strip()
-        paginas = self.ui.tela_adicionar.traducao_3.text().strip()
-        ano = self.ui.tela_adicionar.traducao_4.text().strip()
-
-        if not titulo or not autor or not paginas or not ano:
-            QtWidgets.QMessageBox.information(self, 'Erro', 'Todos os campos devem ser preenchidos')
-            return
-
         id = gerar_id_unico()
-        adicionar_livro(id, titulo, autor, paginas, ano)
-
+        titulo = self.ui.tela_adicionar.palavra.text()
+        autor = self.ui.tela_adicionar.palavra_2.text()
+        paginas = self.ui.tela_adicionar.traducao_3.text()
+        ano = self.ui.tela_adicionar.traducao_4.text()
+        adicionar_livro(id,titulo,autor,paginas,ano)
         self.ui.tela_adicionar.palavra.setText("")
         self.ui.tela_adicionar.palavra_2.setText("")
         self.ui.tela_adicionar.traducao_3.setText("")
         self.ui.tela_adicionar.traducao_4.setText("")
-
         
     def editar_livro(self):
         # Obtém os novos dados do formulário
@@ -291,13 +284,15 @@ class Main(QMainWindow):
         livro_atualizado = {
             'titulo': novo_titulo,
             'autor': novo_autor,
-            'paginas': novo_paginas,
-            'ano': novo_ano
+            'ano': novo_ano,
+            'paginas': novo_paginas
         }
 
         # Chama a função para atualizar o livro usando o ID extraído
-        resultado = atualizar_livro(id_livro, livro_atualizado)
-        QtWidgets.QMessageBox.information(self, 'Ok', 'Alterado')
+        atualizar_livro(id_livro, livro_atualizado)
+        QtWidgets.QMessageBox.information(self, 'Ok', 'Atualizou')
+        self.abrirTela("tela_livros")()
+
 
 
 

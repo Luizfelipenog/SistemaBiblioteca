@@ -35,11 +35,11 @@ def atualizar_livro(id, novos_dados):
     
     if not livros_encontrados:
         print(f"Erro: Nenhum livro encontrado com o título '{id}'")
-        return
+        return False
 
     for livro in livros_encontrados:
         livro.reference.update(novos_dados)
-        print(f"Livro '{id}' atualizado com sucesso!")
+    
 
 
 
