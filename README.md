@@ -57,8 +57,6 @@ python app.py
 ```
 📁 Projeto_SD
 │-- 📄 app.py  # Arquivo principal da aplicação
-│-- 📄 app_telas.py  # Arquivo para gerenciamento das telas
-│-- 📄 Autentificação.py  # Tela de autenticação
 │-- 📁 Servicos  # Serviços do sistema
 │   │-- 📄 auth_service.py  # Serviço de autenticação
 │   │-- 📄 crud_service.py  # Serviço de CRUD
