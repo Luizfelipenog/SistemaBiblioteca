@@ -42,22 +42,20 @@ def atualizar_livro(id, novos_dados):
     
 
 
-
-
-
 def deletar_livro(id):
-    try:
-        livro_ref = db.collection("livros").document(id)
-        livro = livro_ref.get()
+    livros_ref = db.collection("livros").where("id", "==", id).stream()
 
-        if livro.exists:
-            livro_ref.delete()
-            print(f"Livro com ID '{id}' removido com sucesso!")
-        else:
-            print(f"Erro: Nenhum livro encontrado com o ID '{id}'")
+    livros_encontrados = [livro for livro in livros_ref]
 
-    except Exception as e:
-        print(f"Erro ao deletar livro: {e}")
+    print("encontrou esse livro: ", livros_encontrados)
+    
+    if not livros_encontrados:
+        print(f"Erro: Nenhum livro encontrado com o ID '{id}'")
+        return False
+
+    for livro in livros_encontrados:
+        livro.reference.delete()  # Obtém a referência e deleta o documento
+        print(f"Livro com ID '{id}' deletado com sucesso!")
         
         
 
