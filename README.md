@@ -75,7 +75,8 @@ python app.py
 ```
 
 ---
-📸 Capturas de Tela
+**📸 Capturas de Tela
+**
 O sistema é simples de utilizar e fácil de entender. As imagens abaixo ilustram seu funcionamento.
 
 🏠 Tela Inicial
