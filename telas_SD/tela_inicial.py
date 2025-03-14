@@ -80,7 +80,7 @@ class tela_inicial(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "Bem Vindo ao sistema de biblioteca!!"))
+        self.label.setText(_translate("Form", "Bem Vindo ao sistema da biblioteca!!"))
         self.confirm.setText(_translate("Form", "Cadastro"))
         self.confirm_2.setText(_translate("Form", "Login"))
 
