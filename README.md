@@ -77,8 +77,7 @@ python app.py
 ---
 
 ## 📸 Capturas de Tela
-
-
+![Captura de tela 2025-03-14 080908](https://github.com/user-attachments/assets/76fd63c3-4ffa-425a-9ab9-6d7c1c0326c6)
 ---
 
 
