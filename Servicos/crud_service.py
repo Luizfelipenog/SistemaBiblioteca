@@ -18,29 +18,28 @@ def listar_livros():
 
     for doc in livros_ref:
         livros[doc.id] = doc.to_dict() 
-
+        print(livros[doc.id])
+    
     return livros
 
 
 
 
 
-def atualizar_livro(id_livro, novos_dados):
-    # Obtém todos os livros da coleção
-    livros_ref = db.collection("livros").stream()
-    print(livros_ref)
-    for doc in livros_ref:
-        # Se o id do documento corresponder ao id fornecido
-        if doc.id == str(id_livro):  # Compara os IDs
-            # Atualiza os dados do livro
-            livro_ref = db.collection("livros").document(doc.id)
-            livro_ref.update(novos_dados)
-            print(f"Livro com ID '{id_livro}' atualizado com sucesso!")
-            return True  # Retorna True indicando sucesso
+def atualizar_livro(id, novos_dados):
+    livros_ref = db.collection("livros").where("id", "==", id).stream()
+
+    livros_encontrados = [livro for livro in livros_ref]
+
+    print("encontrou esse livro: ",livros_encontrados)
     
-    # Se nenhum livro com o ID fornecido foi encontrado
-    print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
-    return False  # Retorna False caso o livro não seja encontrado
+    if not livros_encontrados:
+        print(f"Erro: Nenhum livro encontrado com o título '{id}'")
+        return
+
+    for livro in livros_encontrados:
+        livro.reference.update(novos_dados)
+        print(f"Livro '{id}' atualizado com sucesso!")
 
 
 

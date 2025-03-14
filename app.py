@@ -182,8 +182,8 @@ class Main(QMainWindow):
             if dados:
                 detalhes = (f"📖 {dados.get('titulo', 'Título Desconhecido')}\n"
                             f"✍️ Autor: {dados.get('autor', 'Desconhecido')}\n"
-                            f"📅 Ano: {dados.get('ano', 'Desconhecido')}\n"
                             f"📄 Páginas: {dados.get('paginas', 'Desconhecido')}\n"
+                            f"📅 Ano: {dados.get('ano', 'Desconhecido')}\n"
                             f"━━━━━━━━━━━━━━━━━━")
 
 
@@ -237,8 +237,8 @@ class Main(QMainWindow):
                 # Formata os detalhes do livro
                 detalhes = (f"📖 {titulo}\n"
                             f"✍️ Autor: {autor}\n"
-                            f"📅 Ano: {ano}\n"
                             f"📄 Páginas: {paginas}\n"
+                            f"📅 Ano: {ano}\n"
                             f"━━━━━━━━━━━━━━━━━━")
 
                 item = QtWidgets.QListWidgetItem(detalhes)  # Cria o item na lista.
@@ -279,33 +279,18 @@ class Main(QMainWindow):
 
         # Extraia somente o ID
         id_livro = dados.get('id')
-        if not id_livro:
-            QtWidgets.QMessageBox.information(self, 'Erro', 'ID do livro não encontrado.')
-            return
 
         # Cria o dicionário com os dados atualizados
         livro_atualizado = {
             'titulo': novo_titulo,
             'autor': novo_autor,
-            'ano': novo_ano,
-            'paginas': novo_paginas
+            'paginas': novo_paginas,
+            'ano': novo_ano
         }
 
         # Chama a função para atualizar o livro usando o ID extraído
         resultado = atualizar_livro(id_livro, livro_atualizado)
-        print(f"Mandando", resultado)
-        if resultado:
-            novo_texto = (f"📖 {novo_titulo}\n"
-                        f"✍️ Autor: {novo_autor}\n"
-                        f"📅 Ano: {novo_ano}\n"
-                        f"📄 Páginas: {novo_paginas}\n"
-                        f"━━━━━━━━━━━━━━━━━━")
-            item_selecionado.setText(novo_texto)
-            dados.update(livro_atualizado)
-            item_selecionado.setData(QtCore.Qt.UserRole, dados)
-            self.abrirTela("tela_livros")()
-        else:
-            QtWidgets.QMessageBox.information(self, 'Erro', 'Erro ao atualizar o livro.')
+        QtWidgets.QMessageBox.information(self, 'Ok', 'Alterado')
 
 
 
