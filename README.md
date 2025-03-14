@@ -87,6 +87,7 @@ e concluir a operação tanto apenas apertando enter ou apertando no botão de c
 Com uma conta feita você poderá logar ao sistema o qual da mesma forma do cadastro você pode confirmar apertando o botão de confirmar abaixo ou apenas 
 apertando enter.
 ![Captura de tela 2025-03-14 081005](https://github.com/user-attachments/assets/26d69ba4-a78c-4327-9b29-5e24a36ef813)
+Após logar você tera acesso a principal pagina do progama, nela terão 3 opções sendo elas a opção de listar livros, editar livros e adicionar livros.
 ![Captura de tela 2025-03-14 141725](https://github.com/user-attachments/assets/63809922-fe0c-4a0c-a2c3-ef1b9316d434)
 ![Captura de tela 2025-03-14 141737](https://github.com/user-attachments/assets/34c0fbaa-0979-49ed-8f86-73ce8914152e)
 ---
