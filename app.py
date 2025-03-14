@@ -248,16 +248,22 @@ class Main(QMainWindow):
                 self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
     def add(self):
-        id = gerar_id_unico()
-        titulo = self.ui.tela_adicionar.palavra.text()
-        autor = self.ui.tela_adicionar.palavra_2.text()
-        paginas = self.ui.tela_adicionar.traducao_3.text()
-        ano = self.ui.tela_adicionar.traducao_4.text()
-        adicionar_livro(id,titulo,autor,paginas,ano)
-        self.ui.tela_adicionar.palavra.setText("")
-        self.ui.tela_adicionar.palavra_2.setText("")
-        self.ui.tela_adicionar.traducao_3.setText("")
-        self.ui.tela_adicionar.traducao_4.setText("")
+            titulo = self.ui.tela_adicionar.palavra.text().strip()
+            autor = self.ui.tela_adicionar.palavra_2.text().strip()
+            paginas = self.ui.tela_adicionar.traducao_3.text().strip()
+            ano = self.ui.tela_adicionar.traducao_4.text().strip()
+
+            if not titulo or not autor or not paginas or not ano:
+                QtWidgets.QMessageBox.information(self, 'Erro', 'Todos os campos devem ser preenchidos')
+                return
+
+            id = gerar_id_unico()
+            adicionar_livro(id, titulo, autor, paginas, ano)
+
+            self.ui.tela_adicionar.palavra.setText("")
+            self.ui.tela_adicionar.palavra_2.setText("")
+            self.ui.tela_adicionar.traducao_3.setText("")
+            self.ui.tela_adicionar.traducao_4.setText("")
         
     def editar_livro(self):
         # Obtém os novos dados do formulário
