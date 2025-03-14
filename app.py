@@ -102,6 +102,8 @@ class Main(QMainWindow):
         self.ui.editar_livros.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
         self.ui.editar_livros.lista.itemClicked.connect(self.mostrar_detalhes)
         self.ui.editar_livros.confirm_5.clicked.connect(self.editar_livro)
+        self.ui.editar_livros.confirm_6.clicked.connect(self.deletar_livro)
+        
 
 
         
@@ -247,40 +249,43 @@ class Main(QMainWindow):
                 self.ui.tela_listar.lista.addItem(item)  # Adiciona o item na lista
 
     def add(self):
+        titulo = self.ui.tela_adicionar.palavra.text().strip()
+        autor = self.ui.tela_adicionar.palavra_2.text().strip()
+        paginas = self.ui.tela_adicionar.traducao_3.text().strip()
+        ano = self.ui.tela_adicionar.traducao_4.text().strip()
+
+        if not titulo or not autor or not paginas or not ano:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Todos os campos devem ser preenchidos')
+            return
+
         id = gerar_id_unico()
-        titulo = self.ui.tela_adicionar.palavra.text()
-        autor = self.ui.tela_adicionar.palavra_2.text()
-        paginas = self.ui.tela_adicionar.traducao_3.text()
-        ano = self.ui.tela_adicionar.traducao_4.text()
-        adicionar_livro(id,titulo,autor,paginas,ano)
+        adicionar_livro(id, titulo, autor, paginas, ano)
+
         self.ui.tela_adicionar.palavra.setText("")
         self.ui.tela_adicionar.palavra_2.setText("")
         self.ui.tela_adicionar.traducao_3.setText("")
         self.ui.tela_adicionar.traducao_4.setText("")
         
     def editar_livro(self):
-        # Obtém os novos dados do formulário
         novo_titulo = self.ui.editar_livros.Titulo.text()
         novo_autor = self.ui.editar_livros.autor.text()
         novo_paginas = self.ui.editar_livros.paginas.text()
         novo_ano = self.ui.editar_livros.ano.text()
 
-        # Obtém o item selecionado na lista
+
         item_selecionado = self.ui.editar_livros.lista.currentItem()
         if not item_selecionado:
             QtWidgets.QMessageBox.information(self, 'Erro', 'Nenhum livro selecionado.')
             return
 
-        # Extrai os dados associados ao item e obtém o ID do livro
+
         dados = item_selecionado.data(QtCore.Qt.UserRole)
         if not dados or not isinstance(dados, dict):
             QtWidgets.QMessageBox.information(self, 'Erro', 'Dados do livro inválidos.')
             return
-
-        # Extraia somente o ID
         id_livro = dados.get('id')
 
-        # Cria o dicionário com os dados atualizados
+
         livro_atualizado = {
             'titulo': novo_titulo,
             'autor': novo_autor,
@@ -288,14 +293,27 @@ class Main(QMainWindow):
             'paginas': novo_paginas
         }
 
-        # Chama a função para atualizar o livro usando o ID extraído
+
         atualizar_livro(id_livro, livro_atualizado)
         QtWidgets.QMessageBox.information(self, 'Ok', 'Atualizou')
         self.abrirTela("tela_livros")()
 
+    
+    def deletar_livro(self):
+        item_selecionado = self.ui.editar_livros.lista.currentItem()
+        if not item_selecionado:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Nenhum livro selecionado.')
+            return
 
+        dados = item_selecionado.data(QtCore.Qt.UserRole)
+        if not dados or not isinstance(dados, dict):
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Dados do livro inválidos.')
+            return
 
-
+        id_livro = dados.get('id')
+        deletar_livro(id_livro)
+        self.abrirTela("tela_livros")()
+        
                 
 
 if __name__ == '__main__':

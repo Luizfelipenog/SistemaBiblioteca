@@ -36,8 +36,6 @@ def atualizar_livro(id_livro, novos_dados):
     print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
     return False  
 
-    for livro in livros_encontrados:
-        livro.reference.update(novos_dados)
     
 
 
@@ -45,32 +43,30 @@ def atualizar_livro(id_livro, novos_dados):
 
 
 def deletar_livro(id):
-    try:
-        livro_ref = db.collection("livros").document(id)
-        livro = livro_ref.get()
+    livros_ref = db.collection("livros").where("id", "==", id).stream()
 
-        if livro.exists:
-            livro_ref.delete()
-            print(f"Livro com ID '{id}' removido com sucesso!")
-        else:
-            print(f"Erro: Nenhum livro encontrado com o ID '{id}'")
+    livros_encontrados = [livro for livro in livros_ref]
 
-    except Exception as e:
-        print(f"Erro ao deletar livro: {e}")
+    print("encontrou esse livro: ", livros_encontrados)
+    
+    if not livros_encontrados:
+        print(f"Erro: Nenhum livro encontrado com o ID '{id}'")
+
+    for livro in livros_encontrados:
+        livro.reference.delete()
+        print(f"Livro com ID '{id}' deletado com sucesso!")
         
         
 
 
 ids_gerados = set()
 
-# Função para gerar um ID único
 def gerar_id_unico():
     while True:
-        # Gera um ID aleatório entre 1 e 1000
+
         id_aleatorio = random.randint(1, 10000)
         
-        # Se o ID já foi gerado, continue tentando
         if id_aleatorio not in ids_gerados:
-            ids_gerados.add(id_aleatorio)  # Adiciona o ID ao conjunto
+            ids_gerados.add(id_aleatorio) 
             return id_aleatorio
 
