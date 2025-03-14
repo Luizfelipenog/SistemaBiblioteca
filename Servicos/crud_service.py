@@ -26,20 +26,19 @@ def listar_livros():
 
 
 def atualizar_livro(id_livro, novos_dados):
-    livros_ref = db.collection("livros").stream()
-    for doc in livros_ref:
-        if doc.id == str(id_livro):  
-            livro_ref = db.collection("livros").document(doc.id)
-            livro_ref.update(novos_dados)
-            print(f"Livro com ID '{id_livro}' atualizado com sucesso!")
-            return True 
-    print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
-    return False  
+    livros_ref = db.collection("livros").where("id", "==", id_livro).stream()
 
+    livros_encontrados = [livro for livro in livros_ref]
+
+    if not livros_encontrados:
+        print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
+        return False  
+
+    for livro in livros_encontrados:
+        livro.reference.update(novos_dados)
+        print(f"Livro com ID '{id_livro}' atualizado com sucesso!")
     
-
-
-
+    return True
 
 
 def deletar_livro(id):

@@ -265,7 +265,8 @@ class Main(QMainWindow):
         self.ui.tela_adicionar.palavra_2.setText("")
         self.ui.tela_adicionar.traducao_3.setText("")
         self.ui.tela_adicionar.traducao_4.setText("")
-        
+        QtWidgets.QMessageBox.information(self, 'Sucesso!', 'Livro adicionado!')  
+
     def editar_livro(self):
         novo_titulo = self.ui.editar_livros.Titulo.text()
         novo_autor = self.ui.editar_livros.autor.text()
@@ -295,8 +296,13 @@ class Main(QMainWindow):
 
 
         atualizar_livro(id_livro, livro_atualizado)
-        QtWidgets.QMessageBox.information(self, 'Ok', 'Atualizou')
+        QtWidgets.QMessageBox.information(self, 'Sucesso', 'Edição concluida')
         self.abrirTela("tela_livros")()
+        self.ui.editar_livros.Titulo.setText("")
+        self.ui.editar_livros.ano.setText("")
+        self.ui.editar_livros.autor.setText("")
+        self.ui.editar_livros.paginas.setText("")
+
 
     
     def deletar_livro(self):
@@ -305,15 +311,25 @@ class Main(QMainWindow):
             QtWidgets.QMessageBox.information(self, 'Erro', 'Nenhum livro selecionado.')
             return
 
-        dados = item_selecionado.data(QtCore.Qt.UserRole)
-        if not dados or not isinstance(dados, dict):
-            QtWidgets.QMessageBox.information(self, 'Erro', 'Dados do livro inválidos.')
-            return
+        resposta = QtWidgets.QMessageBox.question(self, 'Confirmar Exclusão',
+        f'Tem certeza de que deseja excluir este item?',
+        QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No
+        )
 
-        id_livro = dados.get('id')
-        deletar_livro(id_livro)
-        self.abrirTela("tela_livros")()
-        
+        if resposta == QtWidgets.QMessageBox.Yes:
+            dados = item_selecionado.data(QtCore.Qt.UserRole)
+            if not dados or not isinstance(dados, dict):
+                QtWidgets.QMessageBox.information(self, 'Erro', 'Dados do livro inválidos.')
+                return
+
+            id_livro = dados.get('id')
+            deletar_livro(id_livro)
+            self.abrirTela("tela_livros")()
+            QtWidgets.QMessageBox.information(self, 'Sucesso!', 'Livro deletado!')  
+            self.ui.editar_livros.Titulo.setText("")
+            self.ui.editar_livros.ano.setText("")
+            self.ui.editar_livros.autor.setText("")
+            self.ui.editar_livros.paginas.setText("")
                 
 
 if __name__ == '__main__':
