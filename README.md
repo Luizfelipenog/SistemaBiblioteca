@@ -119,6 +119,7 @@ Na tela de edição, será exibida uma lista de todos os livros cadastrados. Ao 
 
 Para editar, basta modificar os campos e clicar em "Concluir" para salvar as alterações.
 Para apagar, selecione o item e clique no botão "Apagar". Uma mensagem de confirmação será exibida antes da exclusão.
+
 📋 Listar Livros
 
 ![Captura de tela 2025-03-14 143455](https://github.com/user-attachments/assets/6145c793-31d0-4aa8-8c7b-8f96dcceac02)
