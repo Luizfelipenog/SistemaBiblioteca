@@ -78,6 +78,12 @@ python app.py
 
 ## 📸 Capturas de Tela
 ![Captura de tela 2025-03-14 080908](https://github.com/user-attachments/assets/76fd63c3-4ffa-425a-9ab9-6d7c1c0326c6)
+![Captura de tela 2025-03-14 080915](https://github.com/user-attachments/assets/75d4ba10-c8c1-44d5-8340-f1d81e175330)
+![Captura de tela 2025-03-14 080933](https://github.com/user-attachments/assets/afc5a41a-ce95-4ad7-9793-a5aa5771be94)
+![Captura de tela 2025-03-14 081005](https://github.com/user-attachments/assets/26d69ba4-a78c-4327-9b29-5e24a36ef813)
+![Captura de tela 2025-03-13 185105](https://github.com/user-attachments/assets/577fda4f-b34d-4b30-99a5-8c0847df1db1)
+![Captura de tela 2025-03-13 190459](https://github.com/user-attachments/assets/8bd1f042-c594-4fb9-bb35-853e9ea87d33)
+
 ---
 
 
