@@ -89,7 +89,20 @@ apertando enter.
 ![Captura de tela 2025-03-14 081005](https://github.com/user-attachments/assets/26d69ba4-a78c-4327-9b29-5e24a36ef813)
 Após logar você tera acesso a principal pagina do progama, nela terão 3 opções sendo elas a opção de listar livros, editar livros e adicionar livros.
 ![Captura de tela 2025-03-14 141725](https://github.com/user-attachments/assets/63809922-fe0c-4a0c-a2c3-ef1b9316d434)
+Ao clicar na opção de editar livros você sera redirecionado para a tela referente a imagem a cima, nesta tela terá uma lista de todos os livros no 
+progama, ao clicar em um item da lista aparecerá nos retangulos azuis os dados daquele item, o qual ao clicar nele e modificar ele você sera capaz
+de salvar as alterações feitas apertando no botão de concluir abaixo, caso queira apagar o item apenas é preciso apertar no item na lista e apertar 
+o botão de apagar, lembrando que o botão de concluir se é necessário apenas no caso de edição do item na lista, com a operação sendo feita aparecerá
+uma mensagem de confirmação caso você queira apagar o item e depois uma mensagem mostrará o resultado da operação e você sera redirecionado para a
+pagina principal do progama.
 ![Captura de tela 2025-03-14 141737](https://github.com/user-attachments/assets/34c0fbaa-0979-49ed-8f86-73ce8914152e)
+Ao clicar na opção de listar livros será mostrado uma lista de todos os itens presentes no banco de dados, servido principalmente de comparação e analise
+das operaçõe feitas
+![Captura de tela 2025-03-14 142952](https://github.com/user-attachments/assets/37c363e6-d777-4d0d-a803-6439d676a504)
+E por ultimo na opção de adicionar livros você sera redirecionado para o tela de adicionar o qual ao fornecer os dados do livro ele e apertar enter ou o
+botão abaixo será feita a adição do respectivo item no banco de dados, lembrando que pode passar entre as áreas de preenchimento tanto por tab quanto por
+enter, ao finalizar a operação uma mensagem aparecerá para anunciar a adição do item.
+
 ---
 
 
