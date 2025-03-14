@@ -75,33 +75,59 @@ python app.py
 ```
 
 ---
+📸 Capturas de Tela
+O sistema é simples de utilizar e fácil de entender. As imagens abaixo ilustram seu funcionamento.
 
-## 📸 Capturas de Tela
-O sistema feito é simples de se utilizar e facíl de se entender, com as imagens abaixo sendo possível entender seu funcionamento.
-![Captura de tela 2025-03-14 143218](https://github.com/user-attachments/assets/fdd6c5bc-ac82-47a7-816d-6e6bfe5cdfda)
-Ao abrir o progama no app.py a primeira tela a se vizualizar seria a tela inicial, a qual você pode escolher entre a opção de logar ou cadastrar.
-![Captura de tela 2025-03-14 143318](https://github.com/user-attachments/assets/4f272854-b47d-4da3-9794-b98112685d5b)
-Escolhendo a opção de cadastrar você sera redirecionado para a tela de cadastro o qual sera necesssario escrever um email e senha validos para o cadastro
-e concluir a operação tanto apenas apertando enter ou apertando no botão de confirmar logo abaixo da área de inserção das credencias.
-![Captura de tela 2025-03-14 143310](https://github.com/user-attachments/assets/965051f0-e560-4927-9005-e8a41d1667a1)
-Com uma conta feita você poderá logar ao sistema o qual da mesma forma do cadastro você pode confirmar apertando o botão de confirmar abaixo ou apenas 
-apertando enter.
-![Captura de tela 2025-03-14 143437](https://github.com/user-attachments/assets/69a86ca1-c753-4c30-bcb2-6a03123449f9)
-Após logar você tera acesso a principal pagina do progama, nela terão 3 opções sendo elas a opção de listar livros, editar livros e adicionar livros.
-![Captura de tela 2025-03-14 143518](https://github.com/user-attachments/assets/e96f8c98-31b2-44c0-b968-1f68eab1304f)
-Ao clicar na opção de editar livros você sera redirecionado para a tela referente a imagem a cima, nesta tela terá uma lista de todos os livros no 
-progama, ao clicar em um item da lista aparecerá nos retangulos azuis os dados daquele item, o qual ao clicar nele e modificar ele você sera capaz
-de salvar as alterações feitas apertando no botão de concluir abaixo, caso queira apagar o item apenas é preciso apertar no item na lista e apertar 
-o botão de apagar, lembrando que o botão de concluir se é necessário apenas no caso de edição do item na lista, com a operação sendo feita aparecerá
-uma mensagem de confirmação caso você queira apagar o item e depois uma mensagem mostrará o resultado da operação e você sera redirecionado para a
-pagina principal do progama.
-![Captura de tela 2025-03-14 143455](https://github.com/user-attachments/assets/70524689-0f2e-47cd-a664-f19d94612f06)
-Ao clicar na opção de listar livros será mostrado uma lista de todos os itens presentes no banco de dados, servido principalmente de comparação e analise
-das operaçõe feitas
-![Captura de tela 2025-03-14 143446](https://github.com/user-attachments/assets/bb063da7-948c-4162-8b26-dd70dffa5dc0)
-E por ultimo na opção de adicionar livros você sera redirecionado para o tela de adicionar o qual ao fornecer os dados do livro ele e apertar enter ou o
-botão abaixo será feita a adição do respectivo item no banco de dados, lembrando que pode passar entre as áreas de preenchimento tanto por tab quanto por
-enter, ao finalizar a operação uma mensagem aparecerá para anunciar a adição do item.
+🏠 Tela Inicial
+![Captura de tela 2025-03-14 143218](https://github.com/user-attachments/assets/1bb68504-862e-424a-913f-cc2408f84547)
+
+
+Ao abrir o programa no app.py, a primeira tela exibida será a tela inicial, onde você pode escolher entre as opções "Logar" ou "Cadastrar".
+
+📝 Tela de Cadastro
+![Captura de tela 2025-03-14 143318](https://github.com/user-attachments/assets/759121d7-7a5b-4da7-b339-97630d2ba76b)
+
+
+Se escolher "Cadastrar", será redirecionado para a tela de cadastro. Basta inserir um e-mail e uma senha válidos para criar uma conta.
+A operação pode ser concluída pressionando Enter ou clicando no botão "Cadastrar" abaixo da área de inserção das credenciais.
+
+🔑 Tela de Login
+![Captura de tela 2025-03-14 143310](https://github.com/user-attachments/assets/a77bdd1c-b27b-4e15-b39e-22fcb7425bdc)
+
+
+Com a conta criada, você pode realizar o login da mesma forma que o cadastro, confirmando com Enter ou clicando no botão "Entrar".
+
+📚 Tela Principal
+![Captura de tela 2025-03-14 143437](https://github.com/user-attachments/assets/66398e6a-a6ae-4380-a8f9-2f3a2a0a98e2)
+
+
+Após o login, você terá acesso à tela principal do programa, que oferece três opções:
+✅ Listar Livros
+✏️ Editar Livros
+➕ Adicionar Livros
+
+✏️ Editar Livros
+![Captura de tela 2025-03-14 143518](https://github.com/user-attachments/assets/98e19320-d7d5-4c0a-be7b-99e78d5a680f)
+
+
+Na tela de edição, será exibida uma lista de todos os livros cadastrados. Ao selecionar um item da lista, seus detalhes aparecerão nos campos azuis.
+
+Para editar, basta modificar os campos e clicar em "Concluir" para salvar as alterações.
+Para apagar, selecione o item e clique no botão "Apagar". Uma mensagem de confirmação será exibida antes da exclusão.
+📋 Listar Livros
+![Captura de tela 2025-03-14 143455](https://github.com/user-attachments/assets/6145c793-31d0-4aa8-8c7b-8f96dcceac02)
+
+
+A opção "Listar Livros" exibe todos os itens cadastrados no banco de dados, facilitando a análise e comparação de informações.
+
+➕ Adicionar Livros
+![Captura de tela 2025-03-14 143446](https://github.com/user-attachments/assets/9d8a1cde-4cee-4afc-a942-1d1c4efae13c)
+
+
+Na tela de adição, basta inserir os detalhes do livro e pressionar Enter ou clicar no botão "Adicionar livro".
+
+É possível navegar entre os campos pressionando Tab ou Enter.
+Após a adição do item, uma mensagem confirmará o sucesso da operação.
 
 ---
 
