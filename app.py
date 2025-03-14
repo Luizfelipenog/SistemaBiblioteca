@@ -102,6 +102,7 @@ class Main(QMainWindow):
         self.ui.editar_livros.confirm_4.clicked.connect(self.abrirTela("tela_livros"))
         self.ui.editar_livros.lista.itemClicked.connect(self.mostrar_detalhes)
         self.ui.editar_livros.confirm_5.clicked.connect(self.editar_livro)
+        self.ui.editar_livros.confirm_6.clicked.connect(self.deletar_livro_selecionado)
 
 
         
@@ -293,6 +294,32 @@ class Main(QMainWindow):
         QtWidgets.QMessageBox.information(self, 'Ok', 'Atualizou')
         self.abrirTela("tela_livros")()
 
+    def deletar_livro_selecionado(self):
+        # Obtém o item selecionado na lista
+        item_selecionado = self.ui.editar_livros.lista.currentItem()
+        if not item_selecionado:
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Nenhum livro selecionado.')
+            return
+
+        # Extrai os dados associados ao item e obtém o ID do livro
+        dados = item_selecionado.data(QtCore.Qt.UserRole)
+        if not dados or not isinstance(dados, dict):
+            QtWidgets.QMessageBox.information(self, 'Erro', 'Dados do livro inválidos.')
+            return
+
+        id_livro = dados.get('id')
+
+        # Confirmação antes da exclusão
+        resposta = QtWidgets.QMessageBox.question(
+            self, 'Confirmar Exclusão',
+            f'Tem certeza de que deseja excluir "{dados.get("titulo", "Livro Desconhecido")}"?',
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No
+        )
+
+        if resposta == QtWidgets.QMessageBox.Yes:
+            deletar_livro(id_livro)
+            QtWidgets.QMessageBox.information(self, 'Sucesso', 'Livro excluído com sucesso!')
+            self.carregar_lista_livros()  # Atualiza a lista após a exclusão
 
 
 

@@ -18,47 +18,35 @@ def listar_livros():
 
     for doc in livros_ref:
         livros[doc.id] = doc.to_dict() 
-        print(livros[doc.id])
-    
+
     return livros
 
 
 
 
 
-def atualizar_livro(id, novos_dados):
-    livros_ref = db.collection("livros").where("id", "==", id).stream()
+def atualizar_livro(id_livro, novos_dados):
+    livros_ref = db.collection("livros").stream()
+    for doc in livros_ref:
+        if doc.id == str(id_livro):  
+            livro_ref = db.collection("livros").document(doc.id)
+            livro_ref.update(novos_dados)
+            print(f"Livro com ID '{id_livro}' atualizado com sucesso!")
+            return True 
+    print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
+    return False  
 
-    livros_encontrados = [livro for livro in livros_ref]
-
-    print("encontrou esse livro: ",livros_encontrados)
-    
-    if not livros_encontrados:
-        print(f"Erro: Nenhum livro encontrado com o título '{id}'")
-        return False
-
-    for livro in livros_encontrados:
-        livro.reference.update(novos_dados)
-    
-
-
-
-
-
-def deletar_livro(id):
-    try:
-        livro_ref = db.collection("livros").document(id)
-        livro = livro_ref.get()
-
-        if livro.exists:
+def deletar_livro(id_livro):
+    livros_ref = db.collection("livros").stream()
+    for doc in livros_ref:
+        if doc.id == str(id_livro):
+            livro_ref = db.collection("livros").document(doc.id)
             livro_ref.delete()
-            print(f"Livro com ID '{id}' removido com sucesso!")
-        else:
-            print(f"Erro: Nenhum livro encontrado com o ID '{id}'")
+            print(f"Livro com ID '{id_livro}' removido com sucesso!")
+            return True  
+    print(f"Erro: Nenhum livro encontrado com o ID '{id_livro}'")
+    return False  
 
-    except Exception as e:
-        print(f"Erro ao deletar livro: {e}")
-        
         
 
 
